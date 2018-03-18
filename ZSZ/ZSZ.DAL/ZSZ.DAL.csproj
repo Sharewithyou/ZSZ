@@ -48,6 +48,31 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DbContextFactory.cs" />
+    <Compile Include="Models\Mapping\T_AdminUsersMap.cs" />
+    <Compile Include="Models\Mapping\T_GroupRolesMap.cs" />
+    <Compile Include="Models\Mapping\T_MenuPermissionsMap.cs" />
+    <Compile Include="Models\Mapping\T_OperatePermissionsMap.cs" />
+    <Compile Include="Models\Mapping\T_RolePermissionsMap.cs" />
+    <Compile Include="Models\Mapping\T_SysGroupUsersMap.cs" />
+    <Compile Include="Models\Mapping\T_SysMenusMap.cs" />
+    <Compile Include="Models\Mapping\T_SysOperationsMap.cs" />
+    <Compile Include="Models\Mapping\T_SysPermissionsMap.cs" />
+    <Compile Include="Models\Mapping\T_SysRolesMap.cs" />
+    <Compile Include="Models\Mapping\T_UserGroupsMap.cs" />
+    <Compile Include="Models\Mapping\T_UserRolesMap.cs" />
+    <Compile Include="Models\T_AdminUsers.cs" />
+    <Compile Include="Models\T_GroupRoles.cs" />
+    <Compile Include="Models\T_MenuPermissions.cs" />
+    <Compile Include="Models\T_OperatePermissions.cs" />
+    <Compile Include="Models\T_RolePermissions.cs" />
+    <Compile Include="Models\T_SysGroupUsers.cs" />
+    <Compile Include="Models\T_SysMenus.cs" />
+    <Compile Include="Models\T_SysOperations.cs" />
+    <Compile Include="Models\T_SysPermissions.cs" />
+    <Compile Include="Models\T_SysRoles.cs" />
+    <Compile Include="Models\T_UserGroups.cs" />
+    <Compile Include="Models\T_UserRoles.cs" />
+    <Compile Include="Models\ZSZContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
