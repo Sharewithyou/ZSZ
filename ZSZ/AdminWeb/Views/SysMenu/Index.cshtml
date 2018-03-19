@@ -1,0 +1,183 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutHomePage.cshtml";
+}
+
+<!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+@section HeadCss{
+    <link href="~/Content/lib/jquery-mloading/jquery.mloading.css" rel="stylesheet" />
+    <link href="~/Content/lib/zTree_v3/css/metroStyle/metroStyle.css" rel="stylesheet" />
+    <style>
+    </style>
+}
+
+
+
+<nav class="breadcrumb" style="height:50px;"><i class="Hui-iconfont">&#xe67f;</i> 管理员管理 <span class="c-gray en">&gt;</span> 菜单管理 <span class="c-gray en"></span>  <a class="btn btn-success radius r mr-20" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新"><i class="Hui-iconfont">&#xe68f;</i></a></nav>
+
+<div style="margin: 0px 30px;">
+    <div class="row cl">
+        <div class="col-md-4">
+            <div class="panel panel-default" id="treePanel">
+                <div class="panel-heading">
+                    <h3 class="panel-title">菜单</h3>
+                </div>
+                <div class="panel-body">
+                    <div>
+                        <ul id="menuTree" class="ztree"></ul>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+        <div class="col-md-8">
+
+            <div class="panel panel-default" id="operationPanel">
+
+                <div class="panel-heading">
+                    <h3 class="panel-title">页面操作</h3>
+                </div>
+                <div class="panel-body">
+                    <div>
+                        <button type="button" class="btn btn-warning" id="addMenuBtn">增加子节点</button>
+                        <button type="button" class="btn btn-primary">修改</button>
+                        <button type="button" class="btn btn-danger">删除</button>
+                    </div>
+                    @*<table class="table">
+                            <thead>
+                                <tr>
+                                    <th>序号</th>
+                                    <th>操作名称</th>
+                                    <th>链接地址</th>
+                                    <th>操作</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>浏览</td>
+                                    <td>/Home/Index</td>
+                                    <td><a>修改</a><a>删除</a></td>
+
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td>增加</td>
+                                    <td>/Home/Index</td>
+                                    <td><a>修改</a><a>删除</a></td>
+
+                                </tr>
+                            </tbody>
+                        </table>*@
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+
+
+
+
+
+@section FooterScript
+{
+    <script src="~/Content/lib/zTree_v3/js/jquery.ztree.core.min.js"></script>
+    <script src="~/Content/lib/zTree_v3/js/jquery.ztree.excheck.min.js"></script>
+    <script src="~/Content/lib/jquery-mloading/jquery.mloading.js"></script>
+    <script>
+        $(function () {
+
+            //$("body").mLoading({
+            //    text: "",//加载文字，默认值：加载中...
+            //    icon: "",//加载图标，默认值：一个小型的base64的gif图片
+            //    html: false,//设置加载内容是否是html格式，默认值是false
+            //    content: "",//忽略icon和text的值，直接在加载框中显示此值
+            //    mask: true//是否显示遮罩效果，默认显示
+            //});
+
+
+            initTree();
+
+
+
+
+            $("#addMenuBtn").click(function () {
+
+                debugger;
+
+                var nodes = $('#tree').treeview('getChecked');
+                if (nodes.length <= 0) {
+                    return;
+                } else {
+                    layer_show("增加菜单节点", "/SysMenu/AddMenuPage?parentId=" + nodes[0].tags[0] + "&name=" + nodes[0].text, 900, 450);
+                }
+            });
+        });
+
+        function initTree() {
+            var setting = {
+
+                //是否可以checked
+                //check: {
+                //    enable: true
+                //},
+
+                //简单数据格式
+                data: {
+                    simpleData: {
+                        enable: true
+                    }
+                }
+            };
+
+            var nodes = [{ "id": 11, "pId": 0, "name": "保游网" }, { "id": 13, "pId": 11, "name": "技术部" }, { "id": 15, "pId": 11, "name": "户外项目组" }, { "id": 16, "pId": 11, "name": "总经办" }, { "id": 17, "pId": 11, "name": "签证项目组" }];
+
+            var ztree = $.fn.zTree.init($("#menuTree"), setting, nodes);
+            ztree.expandAll(true)
+
+            //$("body").mLoading("show");
+            //setTimeout(function () {
+            //    $("body").mLoading("hide");
+            //}, 1000 * 10);
+
+            //$.ajax({
+            //    url: '/SysMenu/GetAllMenuNode',
+            //    type: 'post',
+            //    success: function (rep) {
+            //        $("body").mLoading("hide");
+            //        if (rep.IsSuccess) {
+            //            var nodes = JSON.parse(rep.Data);
+            //            var ztree = $.fn.zTree.init($("#menuTree"), setting, nodes);
+            //            if (ztree.expandAll(true)) {
+            //                $("#operationPanel").css("height", $("#treePanel").css("height"));
+            //            }
+
+            //        } else {
+            //            alert(rep.Message);
+            //        }
+            //    },
+            //    error: function (xhr, textStatus, errorThrown) {
+            //        $("body").mLoading("hide");
+            //        $("#operationPanel").css("height", $("#treePanel").css("height"));
+            //        //alert(xhr.status + ":" + xhr.statusText);
+
+            //        layer.open({
+            //            type: 1,
+            //            skin: 'layui-layer-rim', //加上边框
+            //            area: ['620px', '440px'], //宽高
+            //            content: xhr.responseText
+            //        });
+            //    }
+
+            //})
+        }
+    </script>
+}
+
+
+

@@ -13,7 +13,7 @@ namespace ZSZ.DAL.Models
         }
 
         public ZSZContext()
-            : base("Name=ZSZContext")
+            : base("Name=EfConnStr")
         {
         }
 

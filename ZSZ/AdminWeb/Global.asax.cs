@@ -1,6 +1,8 @@
 ﻿using AdminWeb.Autofac;
+using AdminWeb.AutoMapper;
 using Autofac;
 using Autofac.Integration.Mvc;
+using AutoMapper;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,6 +22,9 @@ namespace AdminWeb
 
             //依赖注入
             AutofacConfig.Register();
+
+            //实体模型映射
+            Mapper.Initialize(x => { x.AddProfile<SourceProfile>(); });
 
         }
     }
