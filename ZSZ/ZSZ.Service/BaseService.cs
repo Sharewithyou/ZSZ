@@ -1,44 +1,50 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using ZSZ.IDAL;
+using ZSZ.IService;
 
 namespace ZSZ.Service
 {
-    public class BaseService<T> where T : class , IBaseDal<T>
+    public abstract class BaseService<T> : IBaseService<T> where T : class
     {
-        public int Add(T t)
+
+        public BaseService()
+        {
+            SetDal();
+        }
+
+        public abstract void SetDal();
+
+        public IBaseDal<T> Dal { get; set; }
+
+     
+        public T AddEntity(T entity)
         {
             throw new NotImplementedException();
         }
 
-        public int Delete(T t)
+        public bool DeleteEntity(T entity)
         {
             throw new NotImplementedException();
         }
 
-        public int Update(T t)
+        public bool EditEntity(T entity)
         {
             throw new NotImplementedException();
         }
 
-        public IQueryable<T> GetModels(System.Linq.Expressions.Expression<Func<T, bool>> whereLambda)
+        public IQueryable<T> LoadEntities(Expression<Func<T, bool>> whereLambda)
         {
             throw new NotImplementedException();
         }
 
-        public IQueryable<T> GetModelsByPage<type>(int pageSize, int pageIndex, bool isAsc, System.Linq.Expressions.Expression<Func<T, type>> OrderByLambda, System.Linq.Expressions.Expression<Func<T, bool>> WhereLambda)
+        public IQueryable<T> LoadPageEntities<s>(Expression<Func<T, bool>> whereLambda, Expression<Func<T, s>> orderByLambda, int pageIndex, int pageSize, bool isAsc, out int totalCount)
         {
             throw new NotImplementedException();
         }
-
-        public bool SaveChanges()
-        {
-            throw new NotImplementedException();
-        }
-
-      
     }
 }

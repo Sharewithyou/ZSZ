@@ -44,5 +44,11 @@
     <Compile Include="ISysMenuDal.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ZSZ.Model\ZSZ.Model.csproj">
+      <Project>{90088380-92b4-4be6-a6f4-93e6e6fa03a2}</Project>
+      <Name>ZSZ.Model</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

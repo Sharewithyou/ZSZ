@@ -5,6 +5,7 @@ using System.Linq;
 using System.Runtime.Remoting.Messaging;
 using System.Text;
 using System.Threading.Tasks;
+using ZSZ.DAL.Models;
 
 namespace ZSZ.DAL
 {
@@ -18,7 +19,7 @@ namespace ZSZ.DAL
             DbContext dbContext = CallContext.GetData("DbContext") as DbContext;
             if (dbContext == null)
             {
-                //dbContext = new CompanyEntities();
+                dbContext = new ZSZContext();
                 CallContext.SetData("DbContext", dbContext);
             }
             return dbContext;

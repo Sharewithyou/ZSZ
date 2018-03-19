@@ -47,37 +47,25 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BaseDal.cs" />
     <Compile Include="DbContextFactory.cs" />
-    <Compile Include="Models\Mapping\T_AdminUsersMap.cs" />
-    <Compile Include="Models\Mapping\T_GroupRolesMap.cs" />
-    <Compile Include="Models\Mapping\T_MenuPermissionsMap.cs" />
-    <Compile Include="Models\Mapping\T_OperatePermissionsMap.cs" />
-    <Compile Include="Models\Mapping\T_RolePermissionsMap.cs" />
-    <Compile Include="Models\Mapping\T_SysGroupUsersMap.cs" />
-    <Compile Include="Models\Mapping\T_SysMenusMap.cs" />
-    <Compile Include="Models\Mapping\T_SysOperationsMap.cs" />
-    <Compile Include="Models\Mapping\T_SysPermissionsMap.cs" />
-    <Compile Include="Models\Mapping\T_SysRolesMap.cs" />
-    <Compile Include="Models\Mapping\T_UserGroupsMap.cs" />
-    <Compile Include="Models\Mapping\T_UserRolesMap.cs" />
-    <Compile Include="Models\T_AdminUsers.cs" />
-    <Compile Include="Models\T_GroupRoles.cs" />
-    <Compile Include="Models\T_MenuPermissions.cs" />
-    <Compile Include="Models\T_OperatePermissions.cs" />
-    <Compile Include="Models\T_RolePermissions.cs" />
-    <Compile Include="Models\T_SysGroupUsers.cs" />
-    <Compile Include="Models\T_SysMenus.cs" />
-    <Compile Include="Models\T_SysOperations.cs" />
-    <Compile Include="Models\T_SysPermissions.cs" />
-    <Compile Include="Models\T_SysRoles.cs" />
-    <Compile Include="Models\T_UserGroups.cs" />
-    <Compile Include="Models\T_UserRoles.cs" />
-    <Compile Include="Models\ZSZContext.cs" />
+    <Compile Include="ZSZContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SysMenuDal.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ZSZ.IDAL\ZSZ.IDAL.csproj">
+      <Project>{8ad297b5-824e-4955-869c-462d8c1d7843}</Project>
+      <Name>ZSZ.IDAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ZSZ.Model\ZSZ.Model.csproj">
+      <Project>{90088380-92b4-4be6-a6f4-93e6e6fa03a2}</Project>
+      <Name>ZSZ.Model</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

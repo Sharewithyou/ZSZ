@@ -42,11 +42,20 @@
   <ItemGroup>
     <Compile Include="BaseService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SysMenuService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ZSZ.IDAL\ZSZ.IDAL.csproj">
       <Project>{8ad297b5-824e-4955-869c-462d8c1d7843}</Project>
       <Name>ZSZ.IDAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ZSZ.IService\ZSZ.IService.csproj">
+      <Project>{982e908e-d165-444f-bfad-b23117e80541}</Project>
+      <Name>ZSZ.IService</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ZSZ.Model\ZSZ.Model.csproj">
+      <Project>{90088380-92b4-4be6-a6f4-93e6e6fa03a2}</Project>
+      <Name>ZSZ.Model</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

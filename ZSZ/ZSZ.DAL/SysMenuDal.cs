@@ -4,10 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ZSZ.Model;
+using ZSZ.IDAL;
 
-namespace ZSZ.IDAL
+namespace ZSZ.DAL
 {
-    public interface ISysMenuDal : IBaseDal<T_SysMenus>
+    public class SysMenuDal : BaseDal<T_SysMenus>, ISysMenuDal
     {
 
     }
