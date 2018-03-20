@@ -14,11 +14,11 @@ namespace ZSZ.Service
 {
     public class SysMenuService : BaseService<T_SysMenus>, ISysMenuService
     {
-        public ISysMenuDal MenuDal { get; set; }
+        public ISysMenuDal SysMenuDal { get; set; }
 
-        public override void SetDal()
+        public SysMenuService(ISysMenuDal dal) : base(dal)
         {
-            Dal = MenuDal;
+            this.SysMenuDal = dal;
         }
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace ZSZ.Service
             try
             {
                 //var list = MenuDal.GetModels(x => x.IsDeleted == false).Select(x => Mapper.Map<SysMenus>(x)).ToList();
-                var list = MenuDal.GetModels(x => x.IsDeleted == false).ToList();
+                var list = SysMenuDal.GetModels(x => x.IsDeleted == false).ToList();
                 List<ZtreeNode> nodeList = new List<ZtreeNode>();
                 for (int i = 0; i < list.Count; i++)
                 {

@@ -9,19 +9,14 @@ using ZSZ.IService;
 
 namespace ZSZ.Service
 {
-    public abstract class BaseService<T> : IBaseService<T> where T : class
+    public class BaseService<T> : IBaseService<T> where T : class
     {
-
-        public BaseService()
+        public IBaseDal<T> BaseDal { get; set; }
+        public BaseService(IBaseDal<T> currentDal)
         {
-            SetDal();
+            this.BaseDal = currentDal;
         }
-
-        public abstract void SetDal();
-
-        public IBaseDal<T> Dal { get; set; }
-
-     
+         
         public T AddEntity(T entity)
         {
             throw new NotImplementedException();

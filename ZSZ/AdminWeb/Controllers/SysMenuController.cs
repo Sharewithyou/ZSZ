@@ -11,6 +11,11 @@ namespace AdminWeb.Controllers
     {
         public ISysMenuService SysMenuService { get; set; }
 
+        public SysMenuController(ISysMenuService sysMenuService)
+        {
+            this.SysMenuService = sysMenuService;
+        }
+
 
         public ActionResult Index()
         {
