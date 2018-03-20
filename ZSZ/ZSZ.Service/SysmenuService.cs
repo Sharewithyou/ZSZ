@@ -14,7 +14,7 @@ namespace ZSZ.Service
 {
     public class SysMenuService : BaseService<T_SysMenus>, ISysMenuService
     {
-        private ISysMenuDal MenuDal { get; set; }
+        public ISysMenuDal MenuDal { get; set; }
 
         public override void SetDal()
         {

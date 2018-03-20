@@ -9,7 +9,7 @@ namespace AdminWeb.Controllers
 {
     public class SysMenuController : Controller
     {
-        private ISysMenuService SysMenuService { get; set; }
+        public ISysMenuService SysMenuService { get; set; }
 
 
         public ActionResult Index()
