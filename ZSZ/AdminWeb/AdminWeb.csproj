@@ -136,6 +136,7 @@
     <Content Include="Content\images\sort_desc.png" />
     <Content Include="Content\images\totop.png" />
     <Content Include="Content\images\user.png" />
+    <Content Include="Content\js\Common.js" />
     <Content Include="Content\js\de_DE.txt" />
     <Content Include="Content\js\H-ui.admin.js" />
     <Content Include="Content\js\H-ui.js" />
