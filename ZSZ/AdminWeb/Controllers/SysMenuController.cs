@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using ZSZ.IService;
+using Newtonsoft.Json;
 
 namespace AdminWeb.Controllers
 {
@@ -19,7 +20,6 @@ namespace AdminWeb.Controllers
 
         public ActionResult Index()
         {
-
             return View();
         }
 
@@ -27,6 +27,11 @@ namespace AdminWeb.Controllers
         {
             var result = SysMenuService.GetMenuTreeNodeData();
             return Json(result);
+        }
+
+        public ActionResult GetMenuTreeNodeById(int id)
+        {
+            return null;
         }
     }
 }

@@ -83,7 +83,7 @@ var AjaxUtil = {
                 if (rep.IsSuccess) {
                     ajaxObj.options.success(rep);
                 } else {
-                    ajaxObj.options.error(rep);
+                    ajaxObj.options.fail(rep);
                 }
             },
             error: function (xhr, status) {

@@ -45,32 +45,25 @@
                         <button type="button" class="btn btn-primary">修改</button>
                         <button type="button" class="btn btn-danger">删除</button>
                     </div>
-                    @*<table class="table">
-                            <thead>
-                                <tr>
-                                    <th>序号</th>
-                                    <th>操作名称</th>
-                                    <th>链接地址</th>
-                                    <th>操作</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>浏览</td>
-                                    <td>/Home/Index</td>
-                                    <td><a>修改</a><a>删除</a></td>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>序号</th>
+                                <th>操作名称</th>
+                                <th>链接地址</th>
+                                <th>操作</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>浏览</td>
+                                <td>/Home/Index</td>
+                                <td><a>修改</a><a>删除</a></td>
 
-                                </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td>增加</td>
-                                    <td>/Home/Index</td>
-                                    <td><a>修改</a><a>删除</a></td>
-
-                                </tr>
-                            </tbody>
-                        </table>*@
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
 
@@ -88,22 +81,11 @@
 {
     <script src="~/Content/lib/zTree_v3/js/jquery.ztree.core.min.js"></script>
     <script src="~/Content/lib/zTree_v3/js/jquery.ztree.excheck.min.js"></script>
-    @*<script src="~/Content/lib/jquery-mloading/jquery.mloading.js"></script>*@
     <script src="~/Content/js/Common.js"></script>
     <script>
         $(function () {
 
-            //$("body").mLoading({
-            //    text: "",//加载文字，默认值：加载中...
-            //    icon: "",//加载图标，默认值：一个小型的base64的gif图片
-            //    html: false,//设置加载内容是否是html格式，默认值是false
-            //    content: "",//忽略icon和text的值，直接在加载框中显示此值
-            //    mask: true//是否显示遮罩效果，默认显示
-            //});
-
-
             initTree();
-
 
             $("#addMenuBtn").click(function () {
                 var nodes = $('#tree').treeview('getChecked');
@@ -116,33 +98,22 @@
         });
 
         function initTree() {
-            var setting = {
 
-                //是否可以checked
-                //check: {
-                //    enable: true
-                //},
+            var setting = {
 
                 //简单数据格式
                 data: {
                     simpleData: {
                         enable: true
                     }
+                },
+                callback: {
+                    onClick: treeOnClick
                 }
             };
 
-            //var nodes = [{ "id": 11, "pId": 0, "name": "保游网" }, { "id": 13, "pId": 11, "name": "技术部" }, { "id": 15, "pId": 11, "name": "户外项目组" }, { "id": 16, "pId": 11, "name": "总经办" }, { "id": 17, "pId": 11, "name": "签证项目组" }];
-
-            //var ztree = $.fn.zTree.init($("#menuTree"), setting, nodes);
-            //ztree.expandAll(true)
-
-            //$("body").mLoading("show");
-            //setTimeout(function () {
-            //    $("body").mLoading("hide");
-            //}, 1000 * 10);
-
             AjaxUtil.request({
-                url: "/SysMenu/GetMenuTreeNodeData123",     
+                url: "/SysMenu/GetMenuTreeNodeData",
                 type: 'post',
                 success: function (rep) {
                     var nodes = JSON.parse(rep.Data);
@@ -156,36 +127,18 @@
                 }
             });
 
-            //$.ajax({
-            //    url: '/SysMenu/GetMenuTreeNodeData',
-            //    type: 'post',
-            //    success: function (rep) {
-            //        $("body").mLoading("hide");
-            //        if (rep.IsSuccess) {
-            //            var nodes = JSON.parse(rep.Data);
-            //            var ztree = $.fn.zTree.init($("#menuTree"), setting, nodes);
-            //            if (ztree.expandAll(true)) {
-            //                $("#operationPanel").css("height", $("#treePanel").css("height"));
-            //            }
 
-            //        } else {
-            //            alert(rep.Message);
-            //        }
-            //    },
-            //    error: function (xhr, textStatus, errorThrown) {
-            //        $("body").mLoading("hide");
-            //        $("#operationPanel").css("height", $("#treePanel").css("height"));
-            //        //alert(xhr.status + ":" + xhr.statusText);
+        }
 
-            //        layer.open({
-            //            type: 1,
-            //            skin: 'layui-layer-rim', //加上边框
-            //            area: ['620px', '440px'], //宽高
-            //            content: xhr.responseText
-            //        });
-            //    }
+        function treeOnClick(e, treeId, treeNode) {
+            var id = treeNode.id;
+            AjaxUtil.request({
+                url: '',
+                type: 'post',
+                success: function () {
 
-            //})
+                }
+            })
         }
     </script>
 }
