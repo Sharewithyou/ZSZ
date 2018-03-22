@@ -88,23 +88,24 @@
 {
     <script src="~/Content/lib/zTree_v3/js/jquery.ztree.core.min.js"></script>
     <script src="~/Content/lib/zTree_v3/js/jquery.ztree.excheck.min.js"></script>
-    <script src="~/Content/lib/jquery-mloading/jquery.mloading.js"></script>
+    @*<script src="~/Content/lib/jquery-mloading/jquery.mloading.js"></script>*@
+    <script src="~/Content/js/Common.js"></script>
     <script>
         $(function () {
 
-            $("body").mLoading({
-                text: "",//加载文字，默认值：加载中...
-                icon: "",//加载图标，默认值：一个小型的base64的gif图片
-                html: false,//设置加载内容是否是html格式，默认值是false
-                content: "",//忽略icon和text的值，直接在加载框中显示此值
-                mask: true//是否显示遮罩效果，默认显示
-            });
+            //$("body").mLoading({
+            //    text: "",//加载文字，默认值：加载中...
+            //    icon: "",//加载图标，默认值：一个小型的base64的gif图片
+            //    html: false,//设置加载内容是否是html格式，默认值是false
+            //    content: "",//忽略icon和text的值，直接在加载框中显示此值
+            //    mask: true//是否显示遮罩效果，默认显示
+            //});
 
 
             initTree();
 
 
-            $("#addMenuBtn").click(function () {              
+            $("#addMenuBtn").click(function () {
                 var nodes = $('#tree').treeview('getChecked');
                 if (nodes.length <= 0) {
                     return;
@@ -135,41 +136,56 @@
             //var ztree = $.fn.zTree.init($("#menuTree"), setting, nodes);
             //ztree.expandAll(true)
 
-            $("body").mLoading("show");
-            setTimeout(function () {
-                $("body").mLoading("hide");
-            }, 1000 * 10);
+            //$("body").mLoading("show");
+            //setTimeout(function () {
+            //    $("body").mLoading("hide");
+            //}, 1000 * 10);
 
-            $.ajax({
-                url: '/SysMenu/GetMenuTreeNodeData',
+            AjaxUtil.request({
+                url: "/SysMenu/GetMenuTreeNodeData123",     
                 type: 'post',
                 success: function (rep) {
-                    $("body").mLoading("hide");
-                    if (rep.IsSuccess) {
-                        var nodes = JSON.parse(rep.Data);
-                        var ztree = $.fn.zTree.init($("#menuTree"), setting, nodes);
-                        if (ztree.expandAll(true)) {
-                            $("#operationPanel").css("height", $("#treePanel").css("height"));
-                        }
-
-                    } else {
-                        alert(rep.Message);
+                    var nodes = JSON.parse(rep.Data);
+                    var ztree = $.fn.zTree.init($("#menuTree"), setting, nodes);
+                    if (ztree.expandAll(true)) {
+                        $("#operationPanel").css("height", $("#treePanel").css("height"));
                     }
                 },
-                error: function (xhr, textStatus, errorThrown) {
-                    $("body").mLoading("hide");
-                    $("#operationPanel").css("height", $("#treePanel").css("height"));
-                    //alert(xhr.status + ":" + xhr.statusText);
-
-                    layer.open({
-                        type: 1,
-                        skin: 'layui-layer-rim', //加上边框
-                        area: ['620px', '440px'], //宽高
-                        content: xhr.responseText
-                    });
+                fail: function (rep) {
+                    alert(rep.Message);
                 }
+            });
 
-            })
+            //$.ajax({
+            //    url: '/SysMenu/GetMenuTreeNodeData',
+            //    type: 'post',
+            //    success: function (rep) {
+            //        $("body").mLoading("hide");
+            //        if (rep.IsSuccess) {
+            //            var nodes = JSON.parse(rep.Data);
+            //            var ztree = $.fn.zTree.init($("#menuTree"), setting, nodes);
+            //            if (ztree.expandAll(true)) {
+            //                $("#operationPanel").css("height", $("#treePanel").css("height"));
+            //            }
+
+            //        } else {
+            //            alert(rep.Message);
+            //        }
+            //    },
+            //    error: function (xhr, textStatus, errorThrown) {
+            //        $("body").mLoading("hide");
+            //        $("#operationPanel").css("height", $("#treePanel").css("height"));
+            //        //alert(xhr.status + ":" + xhr.statusText);
+
+            //        layer.open({
+            //            type: 1,
+            //            skin: 'layui-layer-rim', //加上边框
+            //            area: ['620px', '440px'], //宽高
+            //            content: xhr.responseText
+            //        });
+            //    }
+
+            //})
         }
     </script>
 }
