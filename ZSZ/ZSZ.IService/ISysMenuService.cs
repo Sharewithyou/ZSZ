@@ -16,5 +16,12 @@ namespace ZSZ.IService
         /// </summary>
         /// <returns></returns>
         MsgResult GetMenuTreeNodeData();
+
+        /// <summary>
+        /// 根据菜单Id获取菜单的详细数据
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        MsgResult GetMenuTreeNodeById(int id = 0);
     }
 }

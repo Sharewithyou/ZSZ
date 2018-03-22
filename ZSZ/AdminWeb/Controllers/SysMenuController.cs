@@ -29,9 +29,10 @@ namespace AdminWeb.Controllers
             return Json(result);
         }
 
-        public ActionResult GetMenuTreeNodeById(int id)
+        public ActionResult GetMenuTreeNodeById(int id = 0)
         {
-            return null;
+            var result = SysMenuService.GetMenuTreeNodeById(id);
+            return Json(result);
         }
     }
 }

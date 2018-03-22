@@ -48,21 +48,14 @@
                     <table class="table">
                         <thead>
                             <tr>
-                                <th>序号</th>
-                                <th>操作名称</th>
-                                <th>链接地址</th>
+                                <th>所属父节点</th>
+                                <th>菜单名称</th>
+                                <th>菜单地址</th>
+                                <th>菜单排序</th>
                                 <th>操作</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>浏览</td>
-                                <td>/Home/Index</td>
-                                <td><a>修改</a><a>删除</a></td>
-
-                            </tr>
-                        </tbody>
+                        <tbody></tbody>
                     </table>
                 </div>
             </div>
@@ -82,6 +75,14 @@
     <script src="~/Content/lib/zTree_v3/js/jquery.ztree.core.min.js"></script>
     <script src="~/Content/lib/zTree_v3/js/jquery.ztree.excheck.min.js"></script>
     <script src="~/Content/js/Common.js"></script>
+    <script type="text/html" id="tableTr">
+        <tr>
+            <td>${MenuName}</td>
+            <td>${MenuUrl}</td>
+            <td>${SortNum}</td>
+            <td><a>修改</a><a>删除</a></td>
+        </tr>
+    </script>
     <script>
         $(function () {
 
@@ -133,9 +134,11 @@
         function treeOnClick(e, treeId, treeNode) {
             var id = treeNode.id;
             AjaxUtil.request({
-                url: '',
+                url: '/SysMenu/GetMenuTreeNodeById',
                 type: 'post',
-                success: function () {
+                data: { id: id },
+                success: function (rep) {
+                    var model = JSON.parse(rep.Data);
 
                 }
             })

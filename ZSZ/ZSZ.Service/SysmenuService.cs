@@ -54,8 +54,37 @@ namespace ZSZ.Service
             return result;
         }
 
+        /// <summary>
+        /// 根据Id获取节点数据
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public MsgResult GetMenuTreeNodeById(int id = 0)
+        {
+            MsgResult result = new MsgResult();
+            SysMenus menu = new SysMenus();
+            try
+            {
+                if (id <= 0)
+                {
+                    result.IsSuccess = false;
+                    result.Message = "传递参数错误";
+                }
+                else
+                {
+                    menu = SysMenuDal.GetModels(x => x.IsDeleted == false && x.Id == id).Select(x => Mapper.Map<SysMenus>(x)).FirstOrDefault();
+                    result.IsSuccess = true;
+                    result.Data = JsonConvert.SerializeObject(menu);
+                }
 
+            }
+            catch (Exception ex)
+            {
+                result.IsSuccess = false;
+                result.Message = ex.Message;
+            }
 
-
+            return result;
+        }
     }
 }
