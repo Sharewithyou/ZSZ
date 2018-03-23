@@ -8,7 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 
 
-namespace AdminWeb.Autofac
+namespace AdminWeb.AutofacFolder
 {
     public class AutofacConfig
     {

@@ -1,4 +1,4 @@
-﻿using AdminWeb.Autofac;
+﻿using AdminWeb.AutofacFolder;
 using AdminWeb.AutoMapper;
 using Autofac;
 using Autofac.Integration.Mvc;
@@ -21,6 +21,7 @@ namespace AdminWeb
             RouteConfig.RegisterRoutes(RouteTable.Routes);
 
             //依赖注入
+           
             AutofacConfig.Register();
 
             //实体模型映射

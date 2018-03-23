@@ -5,6 +5,8 @@ using System.Web;
 using System.Web.Mvc;
 using ZSZ.IService;
 using Newtonsoft.Json;
+using log4net;
+using AdminWeb.AutofacFolder;
 
 namespace AdminWeb.Controllers
 {
@@ -15,8 +17,7 @@ namespace AdminWeb.Controllers
         public SysMenuController(ISysMenuService sysMenuService)
         {
             this.SysMenuService = sysMenuService;
-        }
-
+        }       
 
         public ActionResult Index()
         {
