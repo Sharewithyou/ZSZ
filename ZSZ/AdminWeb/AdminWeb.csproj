@@ -59,6 +59,9 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="log4net, Version=2.0.8.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.2.0.8\lib\net45-full\log4net.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.8.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.8\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
@@ -435,6 +438,7 @@
     <Content Include="Content\lib\jquery-mloading\jquery.mloading.css" />
     <Content Include="Content\lib\jquery-mloading\jquery.mloading.js" />
     <Content Include="Content\lib\jquery.SuperSlide.2.1.1.js" />
+    <Content Include="Content\lib\jquery.tmpl.js" />
     <Content Include="Content\lib\jquery\1.9.1\jquery.js" />
     <Content Include="Content\lib\jquery\1.9.1\jquery.min.js" />
     <Content Include="Content\lib\layer\1.9.3\demo.html" />
@@ -1186,6 +1190,7 @@
     <Content Include="Content\skin\orange\Thumbs.db" />
     <Content Include="Content\skin\red\Thumbs.db" />
     <Content Include="Content\skin\yellow\Thumbs.db" />
+    <Content Include="Log4Net.config" />
     <None Include="packages.config" />
     <Content Include="Views\Shared\_LayoutHomePage.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />

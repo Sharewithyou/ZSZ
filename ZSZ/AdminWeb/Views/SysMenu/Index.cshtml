@@ -55,7 +55,7 @@
                                 <th>操作</th>
                             </tr>
                         </thead>
-                        <tbody></tbody>
+                        <tbody id="nodeTb"></tbody>
                     </table>
                 </div>
             </div>
@@ -75,6 +75,7 @@
     <script src="~/Content/lib/zTree_v3/js/jquery.ztree.core.min.js"></script>
     <script src="~/Content/lib/zTree_v3/js/jquery.ztree.excheck.min.js"></script>
     <script src="~/Content/js/Common.js"></script>
+    <script src="~/Content/lib/jquery.tmpl.js"></script>
     <script type="text/html" id="tableTr">
         <tr>
             <td>${MenuName}</td>
@@ -139,7 +140,10 @@
                 data: { id: id },
                 success: function (rep) {
                     var model = JSON.parse(rep.Data);
-
+                    $.template("Template", $("#tableTr").html());
+                    $.tmpl("Template", model)
+                        .appendTo("#nodeTb");
+                    
                 }
             })
         }

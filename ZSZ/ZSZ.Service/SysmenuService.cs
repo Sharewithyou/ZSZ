@@ -9,17 +9,22 @@ using ZSZ.IService;
 using ZSZ.Model.Model;
 using AutoMapper;
 using Newtonsoft.Json;
+using log4net;
 
 namespace ZSZ.Service
 {
     public class SysMenuService : BaseService<T_SysMenus>, ISysMenuService
     {
+        private ILog logger = LogManager.GetLogger(typeof(SysMenuService));
+
         public ISysMenuDal SysMenuDal { get; set; }
 
         public SysMenuService(ISysMenuDal dal) : base(dal)
         {
             this.SysMenuDal = dal;
         }
+
+
 
         /// <summary>
         /// 获取菜单树节点数据
@@ -72,7 +77,9 @@ namespace ZSZ.Service
                 }
                 else
                 {
-                    menu = SysMenuDal.GetModels(x => x.IsDeleted == false && x.Id == id).Select(x => Mapper.Map<SysMenus>(x)).FirstOrDefault();
+                    var model = SysMenuDal.GetModels(x => x.IsDeleted == false && x.Id == id).FirstOrDefault();
+                    //注意mapper 需要在查询出结果之后再使用，不能加入EF的表达式树中进行计算
+                    menu = Mapper.Map<SysMenus>(model);
                     result.IsSuccess = true;
                     result.Data = JsonConvert.SerializeObject(menu);
                 }
@@ -82,6 +89,7 @@ namespace ZSZ.Service
             {
                 result.IsSuccess = false;
                 result.Message = ex.Message;
+                logger.Error(ex.Message);
             }
 
             return result;

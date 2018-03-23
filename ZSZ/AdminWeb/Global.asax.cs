@@ -26,6 +26,10 @@ namespace AdminWeb
             //实体模型映射
             Mapper.Initialize(x => { x.AddProfile<SourceProfile>(); });
 
+            //log4日志          
+            //自定义
+            log4net.Config.XmlConfigurator.ConfigureAndWatch(new System.IO.FileInfo(Server.MapPath("~") + @"/Log4Net.config"));
+
         }
     }
 }
