@@ -8,13 +8,14 @@ using ZSZ.Model.Model;
 using AutoMapper;
 using Newtonsoft.Json;
 using log4net;
+using ZSZ.Common;
 
 namespace ZSZ.Service
 {
     public class SysMenuService : BaseService<T_SysMenus>, ISysMenuService
     {
         private ILog logger = LogManager.GetLogger(typeof(SysMenuService));
-       
+
 
         public ISysMenuDal SysMenuDal { get; set; }
 
@@ -32,20 +33,27 @@ namespace ZSZ.Service
         public MsgResult GetMenuTreeNodeData()
         {
             MsgResult result = new MsgResult();
+            List<ZtreeNode> nodeList = new List<ZtreeNode>();
             try
             {
-                //var list = MenuDal.GetModels(x => x.IsDeleted == false).Select(x => Mapper.Map<SysMenus>(x)).ToList();
-                var list = SysMenuDal.GetModels(x => x.IsDeleted == false).ToList();
-                List<ZtreeNode> nodeList = new List<ZtreeNode>();
-                for (int i = 0; i < list.Count; i++)
+                if (CacheHelper.GetCache("menuList") == null)
                 {
-                    ZtreeNode node = new ZtreeNode();
-                    node.Id = list[i].Id;
-                    node.Pid = list[i].ParentId;
-                    node.Name = list[i].MenuName;
-                    nodeList.Add(node);
+                    //var list = MenuDal.GetModels(x => x.IsDeleted == false).Select(x => Mapper.Map<SysMenus>(x)).ToList();
+                    var list = SysMenuDal.GetModels(x => x.IsDeleted == false).ToList();
+                    for (int i = 0; i < list.Count; i++)
+                    {
+                        ZtreeNode node = new ZtreeNode();
+                        node.Id = list[i].Id;
+                        node.Pid = list[i].ParentId;
+                        node.Name = list[i].MenuName;
+                        nodeList.Add(node);
+                    }
+                    CacheHelper.SetCache("menuList", nodeList, 3600);
                 }
-
+                else
+                {
+                    nodeList = (List<ZtreeNode>)CacheHelper.GetCache("menuList");
+                }
                 result.IsSuccess = true;
                 result.Data = JsonConvert.SerializeObject(nodeList);
             }
@@ -66,6 +74,7 @@ namespace ZSZ.Service
         public MsgResult GetMenuTreeNodeById(int id = 0)
         {
             MsgResult result = new MsgResult();
+            List<SysMenus> list = new List<SysMenus>();
             SysMenus menu = new SysMenus();
             try
             {
@@ -76,11 +85,13 @@ namespace ZSZ.Service
                 }
                 else
                 {
-                    var model = SysMenuDal.GetModels(x => x.IsDeleted == false && x.Id == id).FirstOrDefault();
+                    var parentNode = SysMenuDal.GetModels(x => x.IsDeleted == false & x.Id == id).FirstOrDefault();
+                    var model = SysMenuDal.GetModels(x => x.IsDeleted == false && x.ParentId == id).ToList();
                     //注意mapper 需要在查询出结果之后再使用，不能加入EF的表达式树中进行计算
-                    menu = Mapper.Map<SysMenus>(model);
+                    list = model.Select(x => Mapper.Map<SysMenus>(x)).ToList();
+                    list.ForEach(x => x.ParentName = parentNode.MenuName);
                     result.IsSuccess = true;
-                    result.Data = JsonConvert.SerializeObject(menu);
+                    result.Data = JsonConvert.SerializeObject(list);
                 }
 
             }

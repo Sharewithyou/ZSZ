@@ -16,5 +16,10 @@ namespace ZSZ.Model.Model
         public int SortNum { get; set; }
         public int CreateUser { get; set; }
         public System.DateTime CreateTime { get; set; }
+
+        /// <summary>
+        /// 父节点的名称
+        /// </summary>
+        public string ParentName { get; set; }
     }
 }

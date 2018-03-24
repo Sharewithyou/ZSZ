@@ -23,7 +23,7 @@
                 <div class="panel-heading">
                     <h3 class="panel-title">菜单</h3>
                 </div>
-                <div class="panel-body">
+                <div class="panel-body" style="min-height:600px;">
                     <div>
                         <ul id="menuTree" class="ztree"></ul>
                     </div>
@@ -39,9 +39,9 @@
                 <div class="panel-heading">
                     <h3 class="panel-title">页面操作</h3>
                 </div>
-                <div class="panel-body">
+                <div class="panel-body" style="min-height:600px;">
                     <div>
-                        <button type="button" class="btn btn-warning" id="addMenuBtn">增加子节点</button>
+                        <button type="button" class="btn btn-warning" onclick="showAddNodePage()">增加子节点</button>
                         <button type="button" class="btn btn-primary">修改</button>
                         <button type="button" class="btn btn-danger">删除</button>
                     </div>
@@ -78,10 +78,11 @@
     <script src="~/Content/lib/jquery.tmpl.js"></script>
     <script type="text/html" id="tableTr">
         <tr>
+            <td>${ParentName}</td>
             <td>${MenuName}</td>
             <td>${MenuUrl}</td>
             <td>${SortNum}</td>
-            <td><a>修改</a><a>删除</a></td>
+            <td><a onclick="showUpdatePage('${Guid}')">修改</a><a>删除</a></td>
         </tr>
     </script>
     <script>
@@ -99,6 +100,7 @@
             });
         });
 
+        ///初始化菜单树
         function initTree() {
 
             var setting = {
@@ -120,9 +122,10 @@
                 success: function (rep) {
                     var nodes = JSON.parse(rep.Data);
                     var ztree = $.fn.zTree.init($("#menuTree"), setting, nodes);
-                    if (ztree.expandAll(true)) {
-                        $("#operationPanel").css("height", $("#treePanel").css("height"));
-                    }
+                    ztree.expandAll(true);
+                    //if (ztree.expandAll(true)) {
+                    //    $("#operationPanel").css("height", $("#treePanel").css("height"));
+                    //}
                 },
                 fail: function (rep) {
                     alert(rep.Message);
@@ -132,8 +135,12 @@
 
         }
 
+        ///菜单单击事件
         function treeOnClick(e, treeId, treeNode) {
             var id = treeNode.id;
+
+            $("#nodeTb").empty();
+
             AjaxUtil.request({
                 url: '/SysMenu/GetMenuTreeNodeById',
                 type: 'post',
@@ -143,10 +150,22 @@
                     $.template("Template", $("#tableTr").html());
                     $.tmpl("Template", model)
                         .appendTo("#nodeTb");
-                    
+
                 }
             })
         }
+
+        ///增加节点
+        function showAddNodePage(nodeId) {
+            layer_show("增加菜单节点", "/SysMenu/AddMenuPage?parentId=", 900, 450);
+        }
+
+        ///修改节点
+        function showUpdatePage(guid) {
+            layer_show("修改菜单节点", "/SysMenu/UpdateMenuPage?guid=" + guid, 900, 450);
+        }
+
+
     </script>
 }
 

@@ -1,0 +1,42 @@
+﻿
+@{
+    ViewBag.Title = "修改节点";
+    Layout = "~/Views/Shared/_LayoutHomePage.cshtml";
+}
+
+<div>
+    <form action="" method="post" class="form form-horizontal responsive" id="demoform">
+        <div class="row cl">
+            <label class="form-label col-xs-3">父节点名称：</label>
+            <div class="formControls col-xs-8">
+                <input type="text" class="input-text" readonly autocomplete="off" value="@ViewData["MenuName"]">
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-3">增加节点名称：</label>
+            <div class="formControls col-xs-8">
+                <input type="text" class="input-text" placeholder="增加节点名称">
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-3">节点Url：</label>
+            <div class="formControls col-xs-8">
+                <input type="text" class="input-text" autocomplete="off" placeholder="格式：/控制器/方法">
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-3">排序字段：</label>
+            <div class="formControls col-xs-8">
+                <input type="password" class="input-text" autocomplete="off" placeholder="排序字段">
+            </div>
+        </div>
+
+        <div class="row cl">
+            <div class="col-xs-8 col-xs-offset-3">
+                <input class="btn btn-primary" type="submit" value="&nbsp;&nbsp;提交&nbsp;&nbsp;">
+            </div>
+        </div>
+    </form>
+
+</div>
+

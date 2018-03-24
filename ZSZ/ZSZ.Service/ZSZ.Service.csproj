@@ -58,6 +58,10 @@
     <Compile Include="SysMenuService.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ZSZ.Common\ZSZ.Common.csproj">
+      <Project>{3b8f4736-32e2-43ba-986e-97ff5ba56bd9}</Project>
+      <Name>ZSZ.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ZSZ.IDAL\ZSZ.IDAL.csproj">
       <Project>{8ad297b5-824e-4955-869c-462d8c1d7843}</Project>
       <Name>ZSZ.IDAL</Name>
