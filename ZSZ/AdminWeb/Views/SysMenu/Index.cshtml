@@ -41,7 +41,7 @@
                 </div>
                 <div class="panel-body" style="min-height:600px;">
                     <div>
-                        <button type="button" class="btn btn-warning" onclick="showAddNodePage()">增加子节点</button>
+                        <button type="button" class="btn btn-warning" id="btnAddMenu">增加子节点</button>
                         <button type="button" class="btn btn-primary">修改</button>
                         <button type="button" class="btn btn-danger">删除</button>
                     </div>
@@ -90,14 +90,17 @@
 
             initTree();
 
-            $("#addMenuBtn").click(function () {
-                var nodes = $('#tree').treeview('getChecked');
+            ///增加节点
+            $("#btnAddMenu").click(function () {
+                var treeObj = $.fn.zTree.getZTreeObj("#menuTree");
+                var nodes = treeObj.getSelectedNodes();
                 if (nodes.length <= 0) {
                     return;
                 } else {
-                    layer_show("增加菜单节点", "/SysMenu/AddMenuPage?parentId=" + nodes[0].tags[0] + "&name=" + nodes[0].text, 900, 450);
+                    layer_show("增加菜单节点", "/SysMenu/AddMenuPage?parentId=" + nodes[0].pId, 900, 450);
                 }
-            });
+            })
+            
         });
 
         ///初始化菜单树
@@ -155,10 +158,13 @@
             })
         }
 
-        ///增加节点
-        function showAddNodePage(nodeId) {
-            layer_show("增加菜单节点", "/SysMenu/AddMenuPage?parentId=", 900, 450);
-        }
+
+
+
+
+
+
+      
 
         ///修改节点
         function showUpdatePage(guid) {

@@ -93,7 +93,6 @@ namespace ZSZ.Service
                     result.IsSuccess = true;
                     result.Data = JsonConvert.SerializeObject(list);
                 }
-
             }
             catch (Exception ex)
             {

@@ -17,7 +17,7 @@ namespace AdminWeb.Controllers
         public SysMenuController(ISysMenuService sysMenuService)
         {
             this.SysMenuService = sysMenuService;
-        }       
+        }
 
         /// <summary>
         /// 菜单管理首页
@@ -32,8 +32,9 @@ namespace AdminWeb.Controllers
         /// 增加菜单页
         /// </summary>
         /// <returns></returns>
-        public ActionResult AddMenuPage()
+        public ActionResult AddMenuPage(int parentId)
         {
+            var result = SysMenuService.GetMenuTreeNodeById(parentId);
             return View();
         }
 
@@ -50,7 +51,7 @@ namespace AdminWeb.Controllers
         /// 获取菜单节点树数据
         /// </summary>
         /// <returns></returns>
-        public ActionResult GetMenuTreeNodeData()
+        public ActionResult GetMenuTreeNodeData(int parentId)
         {
             var result = SysMenuService.GetMenuTreeNodeData();
             return Json(result);
