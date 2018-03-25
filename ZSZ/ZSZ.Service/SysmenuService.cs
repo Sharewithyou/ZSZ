@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity.Validation;
 using System.Linq;
+using System.Text;
 using ZSZ.Model;
 using ZSZ.IDAL;
 using ZSZ.IService;
@@ -9,6 +11,7 @@ using AutoMapper;
 using Newtonsoft.Json;
 using log4net;
 using ZSZ.Common;
+
 
 namespace ZSZ.Service
 {
@@ -35,7 +38,7 @@ namespace ZSZ.Service
             MsgResult result = new MsgResult();
             List<ZtreeNode> nodeList = new List<ZtreeNode>();
             try
-            {
+            {                              
                 if (CacheHelper.GetCache("menuList") == null)
                 {
                     //var list = MenuDal.GetModels(x => x.IsDeleted == false).Select(x => Mapper.Map<SysMenus>(x)).ToList();
@@ -67,11 +70,11 @@ namespace ZSZ.Service
         }
 
         /// <summary>
-        /// 根据Id获取节点数据
+        /// 根据菜单节点获取子菜单数据
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public MsgResult GetMenuTreeNodeById(int id = 0)
+        public MsgResult GetMenuTreeChildNodeListById(int id = 0)
         {
             MsgResult result = new MsgResult();
             List<SysMenus> list = new List<SysMenus>();
@@ -99,6 +102,80 @@ namespace ZSZ.Service
                 result.IsSuccess = false;
                 result.Message = ex.Message;
                 logger.Error(ex.Message);
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// 根据Id获取节点数据
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public MsgResult GetMenuTreeNodeById(int id = 0)
+        {
+            MsgResult result = new MsgResult();
+            SysMenus menu = new SysMenus();
+            try
+            {
+                if (id <= 0)
+                {
+                    result.IsSuccess = false;
+                    result.Message = "传递参数错误";
+                }
+                else
+                {
+                    var parentNode = SysMenuDal.GetModels(x => x.IsDeleted == false & x.Id == id).FirstOrDefault();
+                    menu = Mapper.Map<SysMenus>(parentNode);
+                    result.IsSuccess = true;
+                    result.Data = JsonConvert.SerializeObject(menu);
+                }
+            }
+            catch (Exception ex)
+            {
+                result.IsSuccess = false;
+                result.Message = ex.Message;
+                logger.Error(ex.Message);
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// 增加菜单节点
+        /// </summary>
+        /// <param name="node"></param>
+        /// <returns></returns>
+        public MsgResult AddMenuNode(SysMenus node)
+        {
+            MsgResult result = new MsgResult();
+            T_SysMenus entity = new T_SysMenus();
+            try
+            {
+                entity = Mapper.Map<T_SysMenus>(node);
+                entity.Guid = Guid.NewGuid().ToString("N");
+                entity.CreateUser = 1;
+                entity.CreateTime = DateTime.Now;
+                SysMenuDal.Add(entity);
+                SysMenuDal.SaveChanges();
+                CacheHelper.RemoveCache("menuList");
+                result.IsSuccess = true;
+                result.Message = "增加成功";
+            }
+            catch (DbEntityValidationException ex)
+            {
+                StringBuilder sb = new StringBuilder();
+                foreach (var ve in ex.EntityValidationErrors.SelectMany(eve => eve.ValidationErrors))
+                {
+                    sb.AppendLine(ve.PropertyName + ":" + ve.ErrorMessage);
+                }
+                result.IsSuccess = false;
+                result.Message = "增加失败：" + sb.ToString();
+            }
+            catch (Exception ex)
+            {
+                result.IsSuccess = false;
+                result.Message = "增加失败：" + ex.Message;
             }
 
             return result;

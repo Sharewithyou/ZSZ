@@ -90,20 +90,23 @@
 
             initTree();
 
-            ///增加节点
+            //增加节点
             $("#btnAddMenu").click(function () {
-                var treeObj = $.fn.zTree.getZTreeObj("#menuTree");
+                //1,根节点的Pid默认为NULL
+                var treeObj = $.fn.zTree.getZTreeObj("menuTree");
                 var nodes = treeObj.getSelectedNodes();
                 if (nodes.length <= 0) {
+                    layer.alert("请先选中节点！");
                     return;
                 } else {
-                    layer_show("增加菜单节点", "/SysMenu/AddMenuPage?parentId=" + nodes[0].pId, 900, 450);
+                    layer_show("增加菜单节点", "/SysMenu/AddMenuPage?Id=" + nodes[0].id, 900, 450);
                 }
-            })
+            });
             
+
         });
 
-        ///初始化菜单树
+        //初始化菜单树
         function initTree() {
 
             var setting = {
@@ -111,7 +114,10 @@
                 //简单数据格式
                 data: {
                     simpleData: {
-                        enable: true
+                        enable: true,
+                        idKey: "id",
+                        pIdKey: "pId",
+                        rootPId: 0
                     }
                 },
                 callback: {
@@ -126,9 +132,7 @@
                     var nodes = JSON.parse(rep.Data);
                     var ztree = $.fn.zTree.init($("#menuTree"), setting, nodes);
                     ztree.expandAll(true);
-                    //if (ztree.expandAll(true)) {
-                    //    $("#operationPanel").css("height", $("#treePanel").css("height"));
-                    //}
+                                     
                 },
                 fail: function (rep) {
                     alert(rep.Message);
@@ -138,7 +142,7 @@
 
         }
 
-        ///菜单单击事件
+        //菜单单击事件
         function treeOnClick(e, treeId, treeNode) {
             var id = treeNode.id;
 
@@ -148,14 +152,14 @@
                 url: '/SysMenu/GetMenuTreeNodeById',
                 type: 'post',
                 data: { id: id },
-                success: function (rep) {
+                success: function(rep) {
                     var model = JSON.parse(rep.Data);
                     $.template("Template", $("#tableTr").html());
                     $.tmpl("Template", model)
                         .appendTo("#nodeTb");
 
                 }
-            })
+            });
         }
 
 

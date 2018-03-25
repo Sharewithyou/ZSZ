@@ -65,7 +65,7 @@ namespace ZSZ.Common
         /// 移除指定缓存
         /// </summary>
         /// <param name="cacheKey">键</param>
-        public static void RemoveAllCache(string cacheKey)
+        public static void RemoveCache(string cacheKey)
         {
             var objCache = HttpRuntime.Cache;
             objCache.Remove(cacheKey);

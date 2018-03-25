@@ -13,6 +13,8 @@ namespace AdminWeb.AutoMapper
         public SourceProfile()
         {
             base.CreateMap<T_SysMenus, SysMenus>();
+
+            base.CreateMap<SysMenus, T_SysMenus>();
         }
 
         //protected override void Configure()

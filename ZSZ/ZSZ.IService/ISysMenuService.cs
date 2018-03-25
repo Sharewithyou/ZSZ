@@ -18,10 +18,24 @@ namespace ZSZ.IService
         MsgResult GetMenuTreeNodeData();
 
         /// <summary>
-        /// 根据菜单Id获取菜单的详细数据
+        /// 根据菜单Id获取子菜单节点的详细数据
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        MsgResult GetMenuTreeChildNodeListById(int id = 0);
+
+        /// <summary>
+        /// 获取某个菜单节点的数据
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
         MsgResult GetMenuTreeNodeById(int id = 0);
+
+        /// <summary>
+        /// 增加菜单节点
+        /// </summary>
+        /// <param name="node"></param>
+        /// <returns></returns>
+        MsgResult AddMenuNode(SysMenus node);
     }
 }

@@ -3,41 +3,68 @@
     ViewBag.Title = "增加节点";
     Layout = "~/Views/Shared/_LayoutHomePage.cshtml";
 }
+@model ZSZ.Model.Model.SysMenus
 
 <div>
-    <form action="" method="post" class="form form-horizontal responsive" id="demoform">
+    <form action="" method="post" class="form form-horizontal responsive" id="addNodeform">
         <div class="row cl">
             <label class="form-label col-xs-3">所属父节点：</label>
             <div class="formControls col-xs-8">
-                <input type="text" class="input-text" readonly autocomplete="off" value="">
+                <input type="text" class="input-text" readonly value="@Model.MenuName">
+                <input type="hidden" value="@Model.Id" name="ParentId" />
             </div>
         </div>
         <div class="row cl">
             <label class="form-label col-xs-3">增加节点名称：</label>
             <div class="formControls col-xs-8">
-                <input type="text" class="input-text" placeholder="增加节点名称">
+                <input type="text" class="input-text" placeholder="增加节点名称" name="MenuName">
             </div>
         </div>
         <div class="row cl">
             <label class="form-label col-xs-3">节点Url：</label>
             <div class="formControls col-xs-8">
-                <input type="text" class="input-text" autocomplete="off" placeholder="格式：/控制器/方法">
+                <input type="text" class="input-text" autocomplete="off" placeholder="格式：/控制器/方法" name="MenuUrl">
             </div>
         </div>
         <div class="row cl">
             <label class="form-label col-xs-3">排序字段：</label>
             <div class="formControls col-xs-8">
-                <input type="password" class="input-text" autocomplete="off" placeholder="排序字段">
+                <input type="text" class="input-text" autocomplete="off" placeholder="排序字段" name="SortNum">
             </div>
         </div>
 
         <div class="row cl">
             <div class="col-xs-8 col-xs-offset-3">
-                <input class="btn btn-primary" type="submit" value="&nbsp;&nbsp;提交&nbsp;&nbsp;">
+                <input class="btn btn-primary btnAddNode" type="button" value="&nbsp;&nbsp;提交&nbsp;&nbsp;">
             </div>
         </div>
     </form>
-
 </div>
+
+@section FooterScript
+{
+    <script>
+        $(function () {
+            $(".btnAddNode").click(function () {
+                AjaxUtil.request({
+                    url: '/SysMenu/AddMenuNode',
+                    type: 'post',
+                    data: $("#addNodeform").serialize(),
+                    isLoading: false,
+                    success: function (rep) {
+                        layer.alert(rep.Message);
+                        layer.closeAll();
+                        parent.window.location.reload();
+
+                    },
+                    fail: function (rep) {
+                        layer.alert(rep.Message);
+                    }
+                });
+            });
+        })
+    </script>
+}
+
 
 

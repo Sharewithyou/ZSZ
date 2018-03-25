@@ -7,6 +7,7 @@ using ZSZ.IService;
 using Newtonsoft.Json;
 using log4net;
 using AdminWeb.AutofacFolder;
+using ZSZ.Model.Model;
 
 namespace AdminWeb.Controllers
 {
@@ -23,7 +24,7 @@ namespace AdminWeb.Controllers
         /// 菜单管理首页
         /// </summary>
         /// <returns></returns>
-        public ActionResult Index()
+        public ActionResult Index(int nodeId)
         {
             return View();
         }
@@ -32,10 +33,23 @@ namespace AdminWeb.Controllers
         /// 增加菜单页
         /// </summary>
         /// <returns></returns>
-        public ActionResult AddMenuPage(int parentId)
+        public ActionResult AddMenuPage(int Id = 0)
         {
-            var result = SysMenuService.GetMenuTreeNodeById(parentId);
-            return View();
+            if (Id < 0)
+            {              
+                return Redirect("~/404.html");
+            }
+            var result = SysMenuService.GetMenuTreeNodeById(Id);
+            if (result.IsSuccess)
+            {
+                var model = JsonConvert.DeserializeObject<SysMenus>(result.Data);
+                return View(model);
+            }
+            else
+            {
+                return Redirect("~/404.html");
+            }
+           
         }
 
         /// <summary>
@@ -51,7 +65,7 @@ namespace AdminWeb.Controllers
         /// 获取菜单节点树数据
         /// </summary>
         /// <returns></returns>
-        public ActionResult GetMenuTreeNodeData(int parentId)
+        public ActionResult GetMenuTreeNodeData()
         {
             var result = SysMenuService.GetMenuTreeNodeData();
             return Json(result);
@@ -64,7 +78,13 @@ namespace AdminWeb.Controllers
         /// <returns></returns>
         public ActionResult GetMenuTreeNodeById(int id = 0)
         {
-            var result = SysMenuService.GetMenuTreeNodeById(id);
+            var result = SysMenuService.GetMenuTreeChildNodeListById(id);
+            return Json(result);
+        }
+
+        public ActionResult AddMenuNode(SysMenus node)
+        {
+            var result = SysMenuService.AddMenuNode(node);
             return Json(result);
         }
 
