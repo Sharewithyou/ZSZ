@@ -82,7 +82,7 @@
             <td>${MenuName}</td>
             <td>${MenuUrl}</td>
             <td>${SortNum}</td>
-            <td><a onclick="showUpdatePage('${Guid}')">修改</a><a>删除</a></td>
+            <td><a onclick="showUpdatePage('${Id}')">修改</a><a onclick="markDeleteNode('${Id}')">删除</a></td>
         </tr>
     </script>
     <script>
@@ -102,7 +102,7 @@
                     layer_show("增加菜单节点", "/SysMenu/AddMenuPage?Id=" + nodes[0].id, 900, 450);
                 }
             });
-            
+
 
         });
 
@@ -132,7 +132,7 @@
                     var nodes = JSON.parse(rep.Data);
                     var ztree = $.fn.zTree.init($("#menuTree"), setting, nodes);
                     ztree.expandAll(true);
-                                     
+
                 },
                 fail: function (rep) {
                     alert(rep.Message);
@@ -152,7 +152,7 @@
                 url: '/SysMenu/GetMenuTreeNodeById',
                 type: 'post',
                 data: { id: id },
-                success: function(rep) {
+                success: function (rep) {
                     var model = JSON.parse(rep.Data);
                     $.template("Template", $("#tableTr").html());
                     $.tmpl("Template", model)
@@ -162,17 +162,32 @@
             });
         }
 
-
-
-
-
-
-
-      
-
         ///修改节点
-        function showUpdatePage(guid) {
-            layer_show("修改菜单节点", "/SysMenu/UpdateMenuPage?guid=" + guid, 900, 450);
+        function showUpdatePage(id) {
+            layer_show("修改菜单节点", "/SysMenu/UpdateMenuPage?id=" + id, 900, 450);
+        }
+
+        //删除节点
+        function markDeleteNode(id) {
+            layer.confirm('确认删除节点？', {
+                btn: ['确认', '取消'] //按钮
+            }, function () {
+
+                AjaxUtil.request({
+                    url: "/SysMenu/MarkDeleteNode",
+                    type: 'post',
+                    data: { Id: id },
+                    success: function (rep) {
+                        layer.closeAll();
+                        window.location.reload();
+                    },
+                    fail: function (rep) {
+                        alert(rep.Message);
+                    }
+                });
+            }, function () {
+
+            });
         }
 
 

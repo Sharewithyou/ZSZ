@@ -25,17 +25,32 @@ namespace ZSZ.IService
         MsgResult GetMenuTreeChildNodeListById(int id = 0);
 
         /// <summary>
-        /// 获取某个菜单节点的数据
+        /// 通过ID获取某个菜单节点的数据
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
         MsgResult GetMenuTreeNodeById(int id = 0);
 
+       
         /// <summary>
         /// 增加菜单节点
         /// </summary>
         /// <param name="node"></param>
         /// <returns></returns>
         MsgResult AddMenuNode(SysMenus node);
+
+        /// <summary>
+        /// 跟新菜单节点
+        /// </summary>
+        /// <param name="node"></param>
+        /// <returns></returns>
+        MsgResult UpdateMenuNode(SysMenus node);
+
+        /// <summary>
+        /// 标记删除菜单节点
+        /// </summary>
+        /// <param name="node"></param>
+        /// <returns></returns>
+        MsgResult MarkDeleteNode(SysMenus node);
     }
 }

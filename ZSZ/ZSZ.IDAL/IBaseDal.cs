@@ -17,11 +17,22 @@ namespace ZSZ.IDAL
         void Add(T t);
 
         /// <summary>
+        /// 标记删除 标记当前对象，必须把必填字段都填写，否则会报错：System.Data.Entity.Validation.DbEntityValidationException
+        /// </summary>
+        /// <param name="t"></param>
+        void MarkDelete(T t);
+
+        /// <summary>
         /// 删除实体
         /// </summary>
         /// <param name="t"></param>
         /// <returns></returns>
         void Delete(T t);
+
+        //1，EF修改常用方法
+        //(1) 先查询出实体，然后再修改
+        //(2) 设置不修改的字段IsModified为false
+        //(3) 使用 EntityFramework.Extended 扩展，缺点是EF的上下文日志不能捕获执行的sql,
 
         /// <summary>
         /// 修改实体
@@ -29,6 +40,13 @@ namespace ZSZ.IDAL
         /// <param name="t"></param>
         /// <returns></returns>
         void Update(T t);
+
+        /// <summary>
+        /// 修改实体的部分字段
+        /// </summary>
+        /// <param name="t"></param>
+        /// <param name="fileds">修改实体的相关字段</param>
+        void UpdateEntityFields(T t, List<string> fileds);
 
         /// <summary>
         /// 根据条件获取实体

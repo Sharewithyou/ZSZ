@@ -20,6 +20,24 @@ namespace ZSZ.DAL
             dbContext.Entry<T>(t).State = EntityState.Added;
         }
 
+        /// <summary>
+        /// 标记删除-IsDeleted
+        /// </summary>
+        /// <param name="t"></param>
+        public void MarkDelete(T t)
+        {
+            foreach (System.Reflection.PropertyInfo p in t.GetType().GetProperties())
+            {
+                if (p.GetValue(t) == null)
+                {
+
+                    dbContext.Entry<T>(t).Property(p.Name).CurrentValue = "";
+                }
+            }
+            dbContext.Set<T>().Attach(t);
+            dbContext.Entry<T>(t).Property("IsDeleted").IsModified = true;
+        }
+
         public void Delete(T t)
         {
             //dbContext.Set<T>().Remove(t);
@@ -30,6 +48,22 @@ namespace ZSZ.DAL
         {
             //dbContext.Set<T>().AddOrUpdate(t);
             dbContext.Entry<T>(t).State = EntityState.Modified;
+        }
+
+        public void UpdateEntityFields(T t, List<string> fieldNames)
+        {
+            if (fieldNames != null && fieldNames.Count > 0)
+            {
+                dbContext.Set<T>().Attach(t);
+                foreach (var item in fieldNames)
+                {
+                    dbContext.Entry<T>(t).Property(item).IsModified = true;
+                }
+            }
+            else
+            {
+                dbContext.Entry<T>(t).State = System.Data.Entity.EntityState.Modified;
+            }
         }
 
         public IQueryable<T> GetModels(Expression<Func<T, bool>> whereLambda)
@@ -57,6 +91,6 @@ namespace ZSZ.DAL
             return dbContext.SaveChanges() > 0 ;
         }
 
-     
+       
     }
 }

@@ -24,7 +24,7 @@ namespace AdminWeb.Controllers
         /// 菜单管理首页
         /// </summary>
         /// <returns></returns>
-        public ActionResult Index(int nodeId)
+        public ActionResult Index()
         {
             return View();
         }
@@ -33,13 +33,13 @@ namespace AdminWeb.Controllers
         /// 增加菜单页
         /// </summary>
         /// <returns></returns>
-        public ActionResult AddMenuPage(int Id = 0)
+        public ActionResult AddMenuPage(int id = 0)
         {
-            if (Id < 0)
-            {              
+            if (id < 0)
+            {
                 return Redirect("~/404.html");
             }
-            var result = SysMenuService.GetMenuTreeNodeById(Id);
+            var result = SysMenuService.GetMenuTreeNodeById(id);
             if (result.IsSuccess)
             {
                 var model = JsonConvert.DeserializeObject<SysMenus>(result.Data);
@@ -49,16 +49,29 @@ namespace AdminWeb.Controllers
             {
                 return Redirect("~/404.html");
             }
-           
+
         }
 
         /// <summary>
         /// 修改菜单页
         /// </summary>
         /// <returns></returns>
-        public ActionResult UpdateMenuPage()
+        public ActionResult UpdateMenuPage(int id = 0)
         {
-            return View();
+            if (id < 0)
+            {
+                return Redirect("~/404.html");
+            }
+            var result = SysMenuService.GetMenuTreeNodeById(id);
+            if (result.IsSuccess)
+            {
+                var model = JsonConvert.DeserializeObject<SysMenus>(result.Data);
+                return View(model);
+            }
+            else
+            {
+                return Redirect("~/404.html");
+            }
         }
 
         /// <summary>
@@ -82,11 +95,40 @@ namespace AdminWeb.Controllers
             return Json(result);
         }
 
+        /// <summary>
+        /// 增加节点
+        /// </summary>
+        /// <param name="node"></param>
+        /// <returns></returns>
         public ActionResult AddMenuNode(SysMenus node)
         {
             var result = SysMenuService.AddMenuNode(node);
             return Json(result);
         }
+
+        /// <summary>
+        /// 跟新节点
+        /// </summary>
+        /// <param name="node"></param>
+        /// <returns></returns>
+        public ActionResult UpdateMenuNode(SysMenus node)
+        {
+            var result = SysMenuService.UpdateMenuNode(node);
+            return Json(result);
+        }
+
+        /// <summary>
+        /// 标记删除节点
+        /// </summary>
+        /// <param name="node"></param>
+        /// <returns></returns>
+        public ActionResult MarkDeleteNode(SysMenus node)
+        {
+            var result = SysMenuService.MarkDeleteNode(node);
+            return Json(result);
+        }
+
+
 
     }
 }
