@@ -52,6 +52,7 @@
   <ItemGroup>
     <Compile Include="BaseDal.cs" />
     <Compile Include="DbContextFactory.cs" />
+    <Compile Include="LoginDal.cs" />
     <Compile Include="ZSZContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SysMenuDal.cs" />

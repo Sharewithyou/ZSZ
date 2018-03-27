@@ -38,15 +38,16 @@ namespace AdminWeb.Controllers
 
         public ActionResult SubmitLogin(LoginRequest request)
         {
-            if (request.VerifyCode != (string) TempData["verifyCode"])
+            if (!string.Equals(request.VerifyCode,(string)TempData["verifyCode"], StringComparison.OrdinalIgnoreCase))
             {
                 return Json(new MsgResult() {IsSuccess = false, Message = "验证码错误"});
             }
             else
             {
                 MsgResult result = LoginService.CheckLogin(request);
+                return Json(result);
             }
-            return null;
+           
         }
     }
 }

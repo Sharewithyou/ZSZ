@@ -37,7 +37,7 @@
             </div>
             <div class="row">
                 <div class="formControls col-8 col-offset-3">
-                    <input name="" type="button" class="btn btn-success radius size-L btnLogin" value="&nbsp;登&nbsp;&nbsp;&nbsp;&nbsp;录&nbsp;">
+                    <input id="btnLogin" type="button" class="btn btn-success radius size-L" value="&nbsp;登&nbsp;&nbsp;&nbsp;&nbsp;录&nbsp;">
                     <input name="" type="reset" class="btn btn-default radius size-L" value="&nbsp;取&nbsp;&nbsp;&nbsp;&nbsp;消&nbsp;">
                 </div>
             </div>
@@ -59,10 +59,10 @@
                     type: 'post',
                     data: $("#loginForm").serialize(),
                     success: function (rep) {
-
+                        alert(rep.Message);
                     },
                     fail: function (rep) {
-
+                        alert(rep.Message);
                     }
 
                 });

@@ -3,12 +3,12 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{07B2234D-EF84-4F07-B31F-C9D0DD5F10B2}</ProjectGuid>
+    <ProjectGuid>{F8CAD6FB-72DC-4151-9426-6AC82B123070}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>AdminUIUnitTest</RootNamespace>
     <AssemblyName>AdminUIUnitTest</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -52,6 +52,32 @@
   <ItemGroup>
     <Compile Include="UnitTest1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ZSZ.Common\ZSZ.Common.csproj">
+      <Project>{3b8f4736-32e2-43ba-986e-97ff5ba56bd9}</Project>
+      <Name>ZSZ.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ZSZ.DAL\ZSZ.DAL.csproj">
+      <Project>{4f2e1b6b-1cf4-4b68-bc4d-82f1f122cd10}</Project>
+      <Name>ZSZ.DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ZSZ.IDAL\ZSZ.IDAL.csproj">
+      <Project>{8AD297B5-824E-4955-869C-462D8C1D7843}</Project>
+      <Name>ZSZ.IDAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ZSZ.IService\ZSZ.IService.csproj">
+      <Project>{982e908e-d165-444f-bfad-b23117e80541}</Project>
+      <Name>ZSZ.IService</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ZSZ.Model\ZSZ.Model.csproj">
+      <Project>{90088380-92b4-4be6-a6f4-93e6e6fa03a2}</Project>
+      <Name>ZSZ.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ZSZ.Service\ZSZ.Service.csproj">
+      <Project>{0495291a-9afd-4015-b8e8-51c51cf95c84}</Project>
+      <Name>ZSZ.Service</Name>
+    </ProjectReference>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

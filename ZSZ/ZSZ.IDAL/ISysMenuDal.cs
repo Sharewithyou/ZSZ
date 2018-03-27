@@ -7,7 +7,7 @@ using ZSZ.Model;
 
 namespace ZSZ.IDAL
 {
-    public interface ISysMenuDal : IBaseDal<T_SysMenus>
+    public interface ISysMenuDal :IBaseDal<T_SysMenus>
     {
 
     }

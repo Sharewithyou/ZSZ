@@ -6,17 +6,18 @@ using System.Threading.Tasks;
 using ZSZ.Common;
 using ZSZ.IDAL;
 using ZSZ.IService;
+using ZSZ.Model;
 using ZSZ.Model.Model;
 using ZSZ.Model.Model.Request;
 
 namespace ZSZ.Service
 {
-    public class LoginService : BaseService<AdminUser>, ILoginService
+    public class LoginService : BaseService<T_AdminUsers>, ILoginService
     {
         public ILoginDal LoginDal { get; set; }
         public LoginService(ILoginDal currentDal) : base(currentDal)
         {
-
+            this.LoginDal = currentDal;
         }
 
         /// <summary>
@@ -56,8 +57,8 @@ namespace ZSZ.Service
                 result.IsSuccess = false;
                 result.Message = "登陆失败：" + ex.Message;
             }
-
             return result;
+        
         }
     }
 }

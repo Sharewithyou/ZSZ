@@ -3,13 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ZSZ.IDAL;
 using ZSZ.Model;
-using ZSZ.Model.Model;
 
-namespace ZSZ.IDAL
+namespace ZSZ.DAL
 {
-    public interface ILoginDal :IBaseDal<T_AdminUsers>
+    public class LoginDal : BaseDal<T_AdminUsers>, ILoginDal
     {
-
     }
 }
