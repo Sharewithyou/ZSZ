@@ -74,7 +74,9 @@
     <Compile Include="Entity\T_SysRoles.cs" />
     <Compile Include="Entity\T_UserGroups.cs" />
     <Compile Include="Entity\T_UserRoles.cs" />
+    <Compile Include="Model\AdminUser.cs" />
     <Compile Include="Model\MsgResult.cs" />
+    <Compile Include="Model\Request\LoginRequest.cs" />
     <Compile Include="Model\SysMenus.cs" />
     <Compile Include="Model\ZtreeNode.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

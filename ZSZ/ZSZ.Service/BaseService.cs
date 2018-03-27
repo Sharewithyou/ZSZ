@@ -16,7 +16,7 @@ namespace ZSZ.Service
         {
             this.BaseDal = currentDal;
         }
-         
+
         public T AddEntity(T entity)
         {
             throw new NotImplementedException();

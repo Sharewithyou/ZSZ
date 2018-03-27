@@ -46,6 +46,7 @@
   <ItemGroup>
     <Compile Include="CacheHelper.cs" />
     <Compile Include="CaptchaHelper.cs" />
+    <Compile Include="EncryptHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
