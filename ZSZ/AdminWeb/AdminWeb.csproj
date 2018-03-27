@@ -1105,6 +1105,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\SysMenuController.cs" />
+    <Compile Include="Controllers\SysPermissionController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -1201,6 +1202,8 @@
     <Content Include="Views\SysMenu\Index.cshtml" />
     <Content Include="Views\SysMenu\AddMenuPage.cshtml" />
     <Content Include="Views\SysMenu\UpdateMenuPage.cshtml" />
+    <Content Include="Views\SysPermission\Index.cshtml" />
+    <Content Include="Views\Shared\MenuTreePartial.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

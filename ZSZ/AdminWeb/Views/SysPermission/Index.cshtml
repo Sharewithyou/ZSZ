@@ -1,0 +1,153 @@
+﻿
+@{
+    ViewBag.Title = "权限管理";
+    Layout = "~/Views/Shared/_LayoutHomePage.cshtml";
+}
+
+@section HeadCss{
+    <link href="~/Content/lib/jquery-mloading/jquery.mloading.css" rel="stylesheet" />
+    <link href="~/Content/lib/zTree_v3/css/metroStyle/metroStyle.css" rel="stylesheet" />  
+}
+
+
+
+<nav class="breadcrumb" style="height:50px;"><i class="Hui-iconfont">&#xe67f;</i> 管理员管理 <span class="c-gray en">&gt;</span> 权限管理 <span class="c-gray en"></span>  <a class="btn btn-success radius r mr-20" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新"><i class="Hui-iconfont">&#xe68f;</i></a></nav>
+
+<div style="margin: 0px 30px;">
+    <div class="row cl">
+        <div class="col-md-4">
+            <div class="panel panel-default" id="treePanel">
+                <div class="panel-heading">
+                    <h3 class="panel-title">菜单</h3>
+                </div>
+                <div class="panel-body" style="min-height:600px;">
+                   @Html.Partial("MenuTreePartial")
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8">
+
+            <div class="panel panel-default" id="operationPanel">
+
+                <div class="panel-heading">
+                    <h3 class="panel-title">页面操作</h3>
+                </div>
+                <div class="panel-body" style="min-height:600px;">
+                    <div>
+                        <button type="button" class="btn btn-warning" id="btnAddMenu">增加子节点</button>
+                        <button type="button" class="btn btn-primary">修改</button>
+                        <button type="button" class="btn btn-danger">删除</button>
+                    </div>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>所属父节点</th>
+                                <th>菜单名称</th>
+                                <th>菜单地址</th>
+                                <th>菜单排序</th>
+                                <th>操作</th>
+                            </tr>
+                        </thead>
+                        <tbody id="nodeTb"></tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+
+
+
+
+
+@section FooterScript
+{   
+   
+    <script src="~/Content/lib/jquery.tmpl.js"></script>
+    <script type="text/html" id="tableTr">
+        <tr>
+            <td>${ParentName}</td>
+            <td>${MenuName}</td>
+            <td>${MenuUrl}</td>
+            <td>${SortNum}</td>
+            <td><a onclick="showUpdatePage('${Id}')">修改</a><a onclick="markDeleteNode('${Id}')">删除</a></td>
+        </tr>
+    </script>
+    <script>
+        $(function () {
+     
+            //增加节点
+            $("#btnAddMenu").click(function () {
+                //1,根节点的Pid默认为NULL
+                var treeObj = $.fn.zTree.getZTreeObj("menuTree");
+                var nodes = treeObj.getSelectedNodes();
+                if (nodes.length <= 0) {
+                    layer.alert("请先选中节点！");
+                    return;
+                } else {
+                    layer_show("增加菜单节点", "/SysMenu/AddMenuPage?Id=" + nodes[0].id, 900, 450);
+                }
+            });
+
+        });
+
+     
+        //菜单单击事件
+        function treeOnClick(e, treeId, treeNode) {
+            var id = treeNode.id;
+
+            $("#nodeTb").empty();
+
+            AjaxUtil.request({
+                url: '/SysMenu/GetMenuTreeNodeById',
+                type: 'post',
+                data: { id: id },
+                success: function (rep) {
+                    var model = JSON.parse(rep.Data);
+                    $.template("Template", $("#tableTr").html());
+                    $.tmpl("Template", model)
+                        .appendTo("#nodeTb");
+
+                }
+            });
+        }
+
+        ///修改节点
+        function showUpdatePage(id) {
+            layer_show("修改菜单节点", "/SysMenu/UpdateMenuPage?id=" + id, 900, 450);
+        }
+
+        //删除节点
+        function markDeleteNode(id) {
+            layer.confirm('确认删除节点？', {
+                btn: ['确认', '取消'] //按钮
+            }, function () {
+
+                AjaxUtil.request({
+                    url: "/SysMenu/MarkDeleteNode",
+                    type: 'post',
+                    data: { Id: id },
+                    success: function (rep) {
+                        layer.closeAll();
+                        window.location.reload();
+                    },
+                    fail: function (rep) {
+                        alert(rep.Message);
+                    }
+                });
+            }, function () {
+
+            });
+        }
+
+
+    </script>
+}
+
+
+
+
+

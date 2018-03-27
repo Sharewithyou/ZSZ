@@ -1,0 +1,55 @@
+﻿<!--菜单树分布视图-->
+
+
+@section HeadCss
+{
+    <link href="~/Content/lib/zTree_v3/css/metroStyle/metroStyle.css" rel="stylesheet" />
+}
+
+<div>
+    <ul id="menuTree" class="ztree"></ul>
+</div>
+
+@section FooterScript
+{
+    <script src="~/Content/lib/zTree_v3/js/jquery.ztree.core.min.js"></script>
+    <script src="~/Content/lib/zTree_v3/js/jquery.ztree.excheck.min.js"></script>
+    <script>
+
+        //菜单树模块
+        $(function () {
+
+            var setting = {
+
+                //简单数据格式
+                data: {
+                    simpleData: {
+                        enable: true,
+                        idKey: "id",
+                        pIdKey: "pId",
+                        rootPId: 0
+                    }
+                },
+                callback: {
+                    //单击事件
+                    onClick: treeOnClick
+                }
+            };
+
+            AjaxUtil.request({
+                url: "/SysMenu/GetMenuTreeNodeData",
+                type: 'post',
+                success: function (rep) {
+                    var nodes = JSON.parse(rep.Data);
+                    var ztree = $.fn.zTree.init($("#menuTree"), setting, nodes);
+                    ztree.expandAll(true);
+
+                },
+                fail: function (rep) {
+                    alert(rep.Message);
+                }
+            });
+        })
+
+    </script>
+}
