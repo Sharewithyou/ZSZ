@@ -1204,6 +1204,7 @@
     <Content Include="Views\SysMenu\UpdateMenuPage.cshtml" />
     <Content Include="Views\SysPermission\Index.cshtml" />
     <Content Include="Views\Shared\MenuTreePartial.cshtml" />
+    <Content Include="Views\Login\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -1218,7 +1219,6 @@
     <Folder Include="Content\lib\Highcharts\4.1.7\exporting-server\java\highcharts-export\highcharts-export-web\target\generated-sources\annotations\" />
     <Folder Include="Content\lib\Highcharts\4.1.7\exporting-server\java\highcharts-export\highcharts-export-web\target\surefire\" />
     <Folder Include="Models\" />
-    <Folder Include="Views\Login\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ZSZ.Common\ZSZ.Common.csproj">

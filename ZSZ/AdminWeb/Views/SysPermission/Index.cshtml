@@ -4,9 +4,12 @@
     Layout = "~/Views/Shared/_LayoutHomePage.cshtml";
 }
 
+<!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
 @section HeadCss{
     <link href="~/Content/lib/jquery-mloading/jquery.mloading.css" rel="stylesheet" />
-    <link href="~/Content/lib/zTree_v3/css/metroStyle/metroStyle.css" rel="stylesheet" />  
+    <link href="~/Content/lib/zTree_v3/css/metroStyle/metroStyle.css" rel="stylesheet" />
+    <style>
+    </style>
 }
 
 
@@ -21,9 +24,13 @@
                     <h3 class="panel-title">菜单</h3>
                 </div>
                 <div class="panel-body" style="min-height:600px;">
-                   @Html.Partial("MenuTreePartial")
+                    <div>
+                        <ul id="menuTree" class="ztree"></ul>
+                    </div>
                 </div>
+
             </div>
+
         </div>
         <div class="col-md-8">
 
@@ -64,8 +71,10 @@
 
 
 @section FooterScript
-{   
-   
+{
+    <script src="~/Content/lib/zTree_v3/js/jquery.ztree.core.min.js"></script>
+    <script src="~/Content/lib/zTree_v3/js/jquery.ztree.excheck.min.js"></script>
+    <script src="~/Content/js/Common.js"></script>
     <script src="~/Content/lib/jquery.tmpl.js"></script>
     <script type="text/html" id="tableTr">
         <tr>
@@ -78,7 +87,9 @@
     </script>
     <script>
         $(function () {
-     
+
+            initTree();
+
             //增加节点
             $("#btnAddMenu").click(function () {
                 //1,根节点的Pid默认为NULL
@@ -92,9 +103,45 @@
                 }
             });
 
+
         });
 
-     
+        //初始化菜单树
+        function initTree() {
+
+            var setting = {
+
+                //简单数据格式
+                data: {
+                    simpleData: {
+                        enable: true,
+                        idKey: "id",
+                        pIdKey: "pId",
+                        rootPId: 0
+                    }
+                },
+                callback: {
+                    onClick: treeOnClick
+                }
+            };
+
+            AjaxUtil.request({
+                url: "/SysMenu/GetMenuTreeNodeData",
+                type: 'post',
+                success: function (rep) {
+                    var nodes = JSON.parse(rep.Data);
+                    var ztree = $.fn.zTree.init($("#menuTree"), setting, nodes);
+                    ztree.expandAll(true);
+
+                },
+                fail: function (rep) {
+                    alert(rep.Message);
+                }
+            });
+
+
+        }
+
         //菜单单击事件
         function treeOnClick(e, treeId, treeNode) {
             var id = treeNode.id;
@@ -146,8 +193,5 @@
 
     </script>
 }
-
-
-
 
 

@@ -8,6 +8,11 @@ using System.Web.Caching;
 
 namespace ZSZ.Common
 {
+    /// <summary>
+    /// 缓存帮助类
+    ///     1，System.Web;
+    ///     2，System.Web.Caching;
+    /// </summary>
     public class CacheHelper
     {
         /// <summary>
