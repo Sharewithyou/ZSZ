@@ -11,12 +11,23 @@ namespace ZSZ.DAL
 {
     public class BaseDal<T> : IBaseDal<T> where T : class
     {
+        // 1, Dbcontext
+
+        // 2, Set<T>() 只是获取EF模型的一种方式
+
         private DbContext dbContext = DbContextFactory.Create();
 
         public void Add(T t)
         {
             //set只是获取EF模型的一种方式而已，在适合使用它的场景使用，比如要在底层做一些封装的时候。
-            //dbContext.Set<T>().Add(t);
+            //entry 获取给定实体的DbEntityEntry对象，该对象提供对实体信息的访问以及对实体执行操作的能力。
+            //DbContext.Entry方法用于访问被跟踪的实体并对其执行操作，比如修改值或设置EntityState，
+            //Attach() 将给定实体附加到集的基础上下文中。也就是说，将实体以“未更改”的状态放置到上下文中，就好像从数据库读取了该实体一样。 
+            //如果您有一个您知道已存在于数据库中的实体，但该实体目前没有被上下文跟踪，那么您可以告诉上下文使用DbSet上的Attach方法跟踪该实体。该实体将在上下文中处于未更改状态
+            //如果调用SaveChanges而不对附加实体进行任何其他操作，则不会对数据库进行更改。这是因为实体处于未更改状态
+            //dbContext.Set<T>().Add(t);  
+            //通过调用DbSet上的Add方法可以将新实体添加到上下文中。这会使实体进入添加状态
+            //向上下文添加新实体的另一种方法是将其状态更改为已添加
             dbContext.Entry<T>(t).State = EntityState.Added;
         }
 
