@@ -45,6 +45,10 @@ namespace AdminWeb.Controllers
             else
             {
                 MsgResult result = LoginService.CheckLogin(request);
+                if (result.IsSuccess)
+                {
+                    Session["LoginUserId"] = result.Data;
+                }
                 return Json(result);
             }
            

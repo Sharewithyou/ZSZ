@@ -19,13 +19,18 @@ namespace ZSZ.Service
             this.BaseDal = currentDal;
         }
 
+        /// <summary>
+        /// 增加实体
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <returns></returns>
         public MsgResult AddEntity(T entity)
         {
-            MsgResult result = new MsgResult();          
+            MsgResult result = new MsgResult();
             try
             {
                 BaseDal.Add(entity);
-                BaseDal.SaveChanges();                         
+                BaseDal.SaveChanges();
                 result.IsSuccess = true;
                 result.Message = "增加成功";
             }
@@ -48,6 +53,41 @@ namespace ZSZ.Service
             return result;
         }
 
+        /// <summary>
+        /// 跟新实体部分字段
+        /// </summary>
+        /// <param name="entity">实体</param>
+        /// <param name="fieldNames">相关的字段集合</param>
+        /// <returns></returns>
+        public MsgResult UpdateEntityFields(T entity, List<string> fieldNames)
+        {
+            MsgResult result = new MsgResult();
+            try
+            {
+                BaseDal.UpdateEntityFields(entity, fieldNames);
+                BaseDal.SaveChanges();
+                result.IsSuccess = true;
+                result.Message = "修改成功";
+            }
+            catch (DbEntityValidationException ex)
+            {
+                StringBuilder sb = new StringBuilder();
+                foreach (var ve in ex.EntityValidationErrors.SelectMany(eve => eve.ValidationErrors))
+                {
+                    sb.AppendLine(ve.PropertyName + ":" + ve.ErrorMessage);
+                }
+                result.IsSuccess = false;
+                result.Message = "修改失败：" + sb.ToString();
+            }
+            catch (Exception ex)
+            {
+                result.IsSuccess = false;
+                result.Message = "修改失败：" + ex.Message;
+            }
+
+            return result;
+        }
+
         public MsgResult UpdateEntity(T entity)
         {
             throw new NotImplementedException();
@@ -63,11 +103,10 @@ namespace ZSZ.Service
             throw new NotImplementedException();
         }
 
-
-
         public IQueryable<T> LoadEntities(Expression<Func<T, bool>> whereLambda)
         {
             throw new NotImplementedException();
         }
+
     }
 }

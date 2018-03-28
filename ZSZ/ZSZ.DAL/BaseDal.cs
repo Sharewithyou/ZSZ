@@ -20,6 +20,11 @@ namespace ZSZ.DAL
             dbContext.Entry<T>(t).State = EntityState.Added;
         }
 
+        public void AddRange(List<T> list)
+        {
+            dbContext.Set<T>().AddRange(list);
+        }
+
         /// <summary>
         /// 标记删除-IsDeleted
         /// </summary>

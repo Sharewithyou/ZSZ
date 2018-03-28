@@ -38,6 +38,7 @@ namespace ZSZ.Service
                     {
                         result.IsSuccess = true;
                         result.Message = "登录成功";
+                        result.Data = model.Id.ToString();
                     }
                     else
                     {

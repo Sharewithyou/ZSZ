@@ -1206,6 +1206,7 @@
     <Content Include="Views\SysPermission\Index.cshtml" />
     <Content Include="Views\Shared\MenuTreePartial.cshtml" />
     <Content Include="Views\Login\Index.cshtml" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
