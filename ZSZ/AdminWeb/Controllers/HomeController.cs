@@ -11,6 +11,11 @@ namespace AdminWeb.Controllers
         // GET: Home
         public ActionResult Index()
         {
+            var userId = Session["LoginUserId"];
+            if (userId == null)
+            {
+                return Redirect("/login/index");
+            }
             return View();
         }
     }

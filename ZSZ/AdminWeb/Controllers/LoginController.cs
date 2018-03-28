@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using AdminWeb.App_Start;
 using ZSZ.Common;
 using ZSZ.IService;
 using ZSZ.Model.Model;
@@ -23,7 +24,7 @@ namespace AdminWeb.Controllers
         
         // GET: Login
         public ActionResult Index()
-        {
+        {          
             return View();
         }
 
@@ -36,6 +37,7 @@ namespace AdminWeb.Controllers
             return File(ms, "image/jpeg");
         }
 
+        [Description]
         public ActionResult SubmitLogin(LoginRequest request)
         {
             if (!string.Equals(request.VerifyCode,(string)TempData["verifyCode"], StringComparison.OrdinalIgnoreCase))

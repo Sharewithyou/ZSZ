@@ -7,6 +7,7 @@ using ZSZ.Common;
 using ZSZ.IDAL;
 using ZSZ.IService;
 using ZSZ.Model;
+using ZSZ.Model.Entity;
 using ZSZ.Model.Model;
 using ZSZ.Model.Model.Request;
 

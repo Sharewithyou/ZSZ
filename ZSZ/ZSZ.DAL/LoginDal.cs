@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using ZSZ.IDAL;
 using ZSZ.Model;
+using ZSZ.Model.Entity;
 
 namespace ZSZ.DAL
 {

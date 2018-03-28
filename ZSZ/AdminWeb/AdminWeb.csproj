@@ -1098,11 +1098,14 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Start\DescriptionAttribute.cs" />
+    <Compile Include="App_Start\RoleAuthorizeAttribute.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="AutofacFolder\AutofacConfig.cs" />
     <Compile Include="AutofacFolder\LoggingModule.cs" />
     <Compile Include="AutoMapper\SourceProfile.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\InitDataController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\SysMenuController.cs" />
     <Compile Include="Controllers\SysPermissionController.cs" />
@@ -1221,6 +1224,7 @@
     <Folder Include="Content\lib\Highcharts\4.1.7\exporting-server\java\highcharts-export\highcharts-export-web\target\generated-sources\annotations\" />
     <Folder Include="Content\lib\Highcharts\4.1.7\exporting-server\java\highcharts-export\highcharts-export-web\target\surefire\" />
     <Folder Include="Models\" />
+    <Folder Include="Views\InitData\" />
     <Folder Include="Views\UserManage\" />
   </ItemGroup>
   <ItemGroup>

@@ -56,6 +56,7 @@
     <Compile Include="Entity\Mapping\T_OperatePermissionsMap.cs" />
     <Compile Include="Entity\Mapping\T_RolePermissionsMap.cs" />
     <Compile Include="Entity\Mapping\T_SysGroupUsersMap.cs" />
+    <Compile Include="Entity\Mapping\T_SysLogMap.cs" />
     <Compile Include="Entity\Mapping\T_SysMenusMap.cs" />
     <Compile Include="Entity\Mapping\T_SysOperationsMap.cs" />
     <Compile Include="Entity\Mapping\T_SysPermissionsMap.cs" />
@@ -68,6 +69,7 @@
     <Compile Include="Entity\T_OperatePermissions.cs" />
     <Compile Include="Entity\T_RolePermissions.cs" />
     <Compile Include="Entity\T_SysGroupUsers.cs" />
+    <Compile Include="Entity\T_SysLog.cs" />
     <Compile Include="Entity\T_SysMenus.cs" />
     <Compile Include="Entity\T_SysOperations.cs" />
     <Compile Include="Entity\T_SysPermissions.cs" />
@@ -78,6 +80,7 @@
     <Compile Include="Model\MsgResult.cs" />
     <Compile Include="Model\Request\LoginRequest.cs" />
     <Compile Include="Model\SysMenus.cs" />
+    <Compile Include="Model\SysOperations.cs" />
     <Compile Include="Model\ZtreeNode.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

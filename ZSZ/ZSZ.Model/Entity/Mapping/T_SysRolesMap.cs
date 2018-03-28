@@ -1,7 +1,7 @@
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity.ModelConfiguration;
 
-namespace ZSZ.Model.Mapping
+namespace ZSZ.Model.Entity.Mapping
 {
     public class T_SysRolesMap : EntityTypeConfiguration<T_SysRoles>
     {

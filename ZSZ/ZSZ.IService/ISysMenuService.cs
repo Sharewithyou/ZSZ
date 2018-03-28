@@ -5,6 +5,7 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using ZSZ.Model;
+using ZSZ.Model.Entity;
 using ZSZ.Model.Model;
 
 namespace ZSZ.IService

@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace ZSZ.Model
+namespace ZSZ.Model.Entity
 {
     public partial class T_SysPermissions
     {
@@ -14,7 +14,7 @@ namespace ZSZ.Model
 
         public int Id { get; set; }
         public string Guid { get; set; }
-        public string Name { get; set; }
+        public int Type { get; set; }
         public string Description { get; set; }
         public bool IsDeleted { get; set; }
         public int CreateUser { get; set; }

@@ -1,15 +1,13 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace ZSZ.Model.Entity
+namespace ZSZ.Model.Model
 {
-    public partial class T_SysOperations
+    public class SysOperations
     {
-        public T_SysOperations()
-        {
-            this.T_OperatePermissions = new List<T_OperatePermissions>();
-        }
-
         public int Id { get; set; }
         public string Guid { get; set; }
         public string Name { get; set; }
@@ -18,6 +16,5 @@ namespace ZSZ.Model.Entity
         public bool IsDeleted { get; set; }
         public int CreateUser { get; set; }
         public System.DateTime CreateTime { get; set; }
-        public virtual ICollection<T_OperatePermissions> T_OperatePermissions { get; set; }
     }
 }

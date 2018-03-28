@@ -11,6 +11,7 @@ using AutoMapper;
 using Newtonsoft.Json;
 using log4net;
 using ZSZ.Common;
+using ZSZ.Model.Entity;
 
 
 namespace ZSZ.Service

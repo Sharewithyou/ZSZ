@@ -1,7 +1,7 @@
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity.ModelConfiguration;
 
-namespace ZSZ.Model.Mapping
+namespace ZSZ.Model.Entity.Mapping
 {
     public class T_SysOperationsMap : EntityTypeConfiguration<T_SysOperations>
     {
@@ -19,17 +19,22 @@ namespace ZSZ.Model.Mapping
                 .IsRequired()
                 .HasMaxLength(100);
 
-            this.Property(t => t.Url)
+            this.Property(t => t.ContronllerName)
                 .IsRequired()
-                .HasMaxLength(100);
+                .HasMaxLength(255);
+
+            this.Property(t => t.ActionName)
+                .IsRequired()
+                .HasMaxLength(255);
 
             // Table & Column Mappings
             this.ToTable("T_SysOperations");
             this.Property(t => t.Id).HasColumnName("Id");
             this.Property(t => t.Guid).HasColumnName("Guid");
             this.Property(t => t.Name).HasColumnName("Name");
-            this.Property(t => t.Url).HasColumnName("Url");
-            this.Property(t => t.MenuId).HasColumnName("MenuId");
+            this.Property(t => t.ContronllerName).HasColumnName("ContronllerName");
+            this.Property(t => t.ActionName).HasColumnName("ActionName");
+            this.Property(t => t.IsDeleted).HasColumnName("IsDeleted");
             this.Property(t => t.CreateUser).HasColumnName("CreateUser");
             this.Property(t => t.CreateTime).HasColumnName("CreateTime");
         }

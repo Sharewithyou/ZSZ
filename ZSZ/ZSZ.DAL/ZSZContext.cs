@@ -1,7 +1,8 @@
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using ZSZ.Model;
-using ZSZ.Model.Mapping;
+using ZSZ.Model.Entity;
+using ZSZ.Model.Entity.Mapping;
 
 namespace ZSZ.DAL.Models
 {
@@ -23,6 +24,7 @@ namespace ZSZ.DAL.Models
         public DbSet<T_OperatePermissions> T_OperatePermissions { get; set; }
         public DbSet<T_RolePermissions> T_RolePermissions { get; set; }
         public DbSet<T_SysGroupUsers> T_SysGroupUsers { get; set; }
+        public DbSet<T_SysLog> T_SysLog { get; set; }
         public DbSet<T_SysMenus> T_SysMenus { get; set; }
         public DbSet<T_SysOperations> T_SysOperations { get; set; }
         public DbSet<T_SysPermissions> T_SysPermissions { get; set; }
@@ -38,6 +40,7 @@ namespace ZSZ.DAL.Models
             modelBuilder.Configurations.Add(new T_OperatePermissionsMap());
             modelBuilder.Configurations.Add(new T_RolePermissionsMap());
             modelBuilder.Configurations.Add(new T_SysGroupUsersMap());
+            modelBuilder.Configurations.Add(new T_SysLogMap());
             modelBuilder.Configurations.Add(new T_SysMenusMap());
             modelBuilder.Configurations.Add(new T_SysOperationsMap());
             modelBuilder.Configurations.Add(new T_SysPermissionsMap());

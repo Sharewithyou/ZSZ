@@ -60,8 +60,11 @@
                     data: $("#loginForm").serialize(),
                     success: function (rep) {
                         alert(rep.Message);
+                        window.location.href = "/Home/Index";
                     },
                     fail: function (rep) {
+                        //输错刷新
+                        changeCode();
                         alert(rep.Message);
                     }
 

@@ -28,11 +28,14 @@ namespace ZSZ.DAL
             //dbContext.Set<T>().Add(t);  
             //通过调用DbSet上的Add方法可以将新实体添加到上下文中。这会使实体进入添加状态
             //向上下文添加新实体的另一种方法是将其状态更改为已添加
-            dbContext.Entry<T>(t).State = EntityState.Added;
+            //dbContext.Entry<T>(t).State = EntityState.Added;
+
+            dbContext.Set<T>().Add(t);
         }
 
         public void AddRange(List<T> list)
         {
+           
             dbContext.Set<T>().AddRange(list);
         }
 
@@ -57,7 +60,9 @@ namespace ZSZ.DAL
         public void Delete(T t)
         {
             //dbContext.Set<T>().Remove(t);
-            dbContext.Entry<T>(t).State = EntityState.Deleted;
+            //dbContext.Entry<T>(t).State = EntityState.Deleted;
+
+            dbContext.Set<T>().Remove(t);
         }
 
         public void Update(T t)

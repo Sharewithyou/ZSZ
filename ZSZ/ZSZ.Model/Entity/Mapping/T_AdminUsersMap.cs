@@ -1,7 +1,7 @@
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity.ModelConfiguration;
 
-namespace ZSZ.Model.Mapping
+namespace ZSZ.Model.Entity.Mapping
 {
     public class T_AdminUsersMap : EntityTypeConfiguration<T_AdminUsers>
     {
@@ -11,9 +11,6 @@ namespace ZSZ.Model.Mapping
             this.HasKey(t => t.Id);
 
             // Properties
-            this.Property(t => t.Id)
-                .HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
-
             this.Property(t => t.Guid)
                 .IsRequired()
                 .HasMaxLength(32);

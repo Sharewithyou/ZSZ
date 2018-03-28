@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace ZSZ.Model
+namespace ZSZ.Model.Entity
 {
     public partial class T_RolePermissions
     {
