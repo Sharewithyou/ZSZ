@@ -5,7 +5,7 @@
 
   <mvcSiteMapNode title="root" controller="root" action="root">
 
-    <mvcSiteMapNode title="系统管理" clickable="false">
+    <mvcSiteMapNode title="系统管理" clickable="false" controller="SysMenu" action="Index">
       <mvcSiteMapNode title="菜单管理" controller="SysMenu" action="Index" />
       <mvcSiteMapNode title="角色管理" controller="UserManage" action="Index" />
       <mvcSiteMapNode title="权限管理" controller="SysPermission" action="Index" />

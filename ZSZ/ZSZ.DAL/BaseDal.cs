@@ -35,7 +35,7 @@ namespace ZSZ.DAL
 
         public void AddRange(List<T> list)
         {
-           
+
             dbContext.Set<T>().AddRange(list);
         }
 
@@ -109,9 +109,14 @@ namespace ZSZ.DAL
 
         public bool SaveChanges()
         {
-            return dbContext.SaveChanges() > 0 ;
+            return dbContext.SaveChanges() > 0;
         }
 
-       
+        public int Clear(string tableName)
+        {
+            //无法截断表 'T_SysRoles'，因为该表正由 FOREIGN KEY 约束引用。
+            //return dbContext.Database.ExecuteSqlCommand("truncate table " + tableName);
+            return dbContext.Database.ExecuteSqlCommand(" delete from " + tableName+" where Id >-1");
+        }
     }
 }

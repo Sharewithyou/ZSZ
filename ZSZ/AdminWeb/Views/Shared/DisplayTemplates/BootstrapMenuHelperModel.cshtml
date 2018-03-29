@@ -1,29 +1,38 @@
 ﻿@model MvcSiteMapProvider.Web.Html.Models.MenuHelperModel
 @using System.Web.Mvc.Html
 @using MvcSiteMapProvider.Web.Html.Models
+@using ZSZ.Model.Model
 
 <input runat="server" id="divScrollValue" type="hidden" value="" />
 <div class="menu_dropdown bk_2">
 
     @foreach (SiteMapNodeModel node in Model)
     {
+        var list = (List<SysOperations>) node.SourceMetadata["rolePermisisionList"];
         if (!node.IsRootNode)
         {
             if (!node.IsClickable)
             {
-                <dl>
-                    <dt><i class="Hui-iconfont">&#xe62d;</i> @node.Title<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
-                    <dd>
-                        <ul>
-                            @{
-                                foreach (var childNode in node.Children)
-                                {
-                                    <li><a _href="@childNode.Url" href="javascript:void(0)">@childNode.Title</a></li>
+                if (list.Any(x => x.ContronllerName == node.Controller && x.ActionName == node.Action))
+                {
+                    <dl>
+                        <dt><i class="Hui-iconfont">&#xe62d;</i> @node.Title<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+                        <dd>
+                            <ul>
+                                @{
+                                    foreach (var childNode in node.Children)
+                                    {
+                                        if (list.Any(x => x.ContronllerName == childNode.Controller && x.ActionName == childNode.Action))
+                                        {
+                                            <li><a _href="@childNode.Url" href="javascript:void(0)">@childNode.Title</a></li>
+                                        }
+                                    }
                                 }
-                            }
-                        </ul>
-                    </dd>
-                </dl>
+                            </ul>
+                        </dd>
+                    </dl>
+                }
+               
             }
         }
     }

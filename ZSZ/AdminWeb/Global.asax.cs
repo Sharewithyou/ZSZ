@@ -10,6 +10,8 @@ using System.Reflection;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
+using StackExchange.Profiling;
+using StackExchange.Profiling.EntityFramework6;
 
 namespace AdminWeb
 {
@@ -21,7 +23,7 @@ namespace AdminWeb
             RouteConfig.RegisterRoutes(RouteTable.Routes);
 
             //依赖注入
-           
+
             AutofacConfig.Register();
 
             //实体模型映射
@@ -31,6 +33,19 @@ namespace AdminWeb
             //自定义
             log4net.Config.XmlConfigurator.ConfigureAndWatch(new System.IO.FileInfo(Server.MapPath("~") + @"/Log4Net.config"));
 
+            MiniProfilerEF6.Initialize();
+
+        }
+
+        protected void Application_BeginRequest()
+        {          
+            MiniProfiler.Start();
+        }
+        protected void Application_EndRequest()
+        {
+            MiniProfiler.Stop();
         }
     }
+
 }
+

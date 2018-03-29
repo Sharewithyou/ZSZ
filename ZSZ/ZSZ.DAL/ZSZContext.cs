@@ -1,5 +1,6 @@
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
+using log4net;
 using ZSZ.Model;
 using ZSZ.Model.Entity;
 using ZSZ.Model.Entity.Mapping;
@@ -8,6 +9,7 @@ namespace ZSZ.DAL.Models
 {
     public partial class ZSZContext : DbContext
     {
+        private static ILog log = LogManager.GetLogger(typeof(ZSZContext));
         static ZSZContext()
         {
             Database.SetInitializer<ZSZContext>(null);
@@ -16,6 +18,9 @@ namespace ZSZ.DAL.Models
         public ZSZContext()
             : base("Name=EfConnStr")
         {
+            this.Database.Log = (sql) => {
+                log.InfoFormat("EFÖ´ÐÐSQL£º{0}", sql);
+            };
         }
 
         public DbSet<T_AdminUsers> T_AdminUsers { get; set; }

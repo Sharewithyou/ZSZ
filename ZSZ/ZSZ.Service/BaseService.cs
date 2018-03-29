@@ -98,6 +98,38 @@ namespace ZSZ.Service
             throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// 清空表的数据
+        /// </summary>
+        /// <param name="tableName"></param>
+        /// <returns></returns>
+        public MsgResult Clear(string tableName)
+        {
+            MsgResult result = new MsgResult();
+            try
+            {
+                int count = BaseDal.Clear(tableName);
+                if (count > 0)
+                {
+                    result.IsSuccess = true;
+                    result.Message = "清除" + tableName + "成功";
+                }
+                else
+                {
+                    result.IsSuccess = false;
+                    result.Message = "清除" + tableName + "失败";
+                }
+            }
+            catch (Exception ex)
+            {
+                result.IsSuccess = false;
+                result.Message = "清除" + tableName + "失败" + ex.Message;
+            }
+
+            return result;
+
+        }
+
         public IQueryable<T> LoadPageEntities<s>(Expression<Func<T, bool>> whereLambda, Expression<Func<T, s>> orderByLambda, int pageIndex, int pageSize, bool isAsc, out int totalCount)
         {
             throw new NotImplementedException();

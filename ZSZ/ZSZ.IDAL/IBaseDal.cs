@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
@@ -72,6 +73,12 @@ namespace ZSZ.IDAL
         /// </summary>
         /// <returns></returns>
         bool SaveChanges();
+
+        /// <summary>
+        /// 清空表中的数据
+        /// </summary>
+        /// <param name="tableName"></param>
+        int Clear(string tableName);
 
     }
 }

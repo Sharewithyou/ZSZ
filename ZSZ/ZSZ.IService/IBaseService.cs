@@ -13,6 +13,7 @@ namespace ZSZ.IService
         MsgResult AddEntity(T entity);
         MsgResult UpdateEntity(T entity);
         MsgResult MarkDeleteEntity(T entity);
+        MsgResult Clear(string tableName);
        
         //1，使用 IEnumerable<> 结果就已经将所有的数据查询出来，最后在内存中进行操作所有对于IEnumerable的过滤，排序等操作，都是在内存中发生的。也就是说数据已经从数据库中获取到了内存中，只是在内存中进行过滤和排序操作。
 
