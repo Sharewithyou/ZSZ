@@ -69,5 +69,10 @@ namespace AdminWeb.Controllers
             }
             return null;
         }
+
+        public ActionResult Test()
+        {
+            return View();
+        }
     }
 }
