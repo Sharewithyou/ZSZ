@@ -21,10 +21,10 @@ namespace AdminWeb.Controllers
         {
             this.LoginService = service;
         }
-        
+
         // GET: Login
         public ActionResult Index()
-        {          
+        {
             return View();
         }
 
@@ -37,12 +37,12 @@ namespace AdminWeb.Controllers
             return File(ms, "image/jpeg");
         }
 
-        [Description]
+        [Description(Name = "提交登陆")]
         public ActionResult SubmitLogin(LoginRequest request)
         {
-            if (!string.Equals(request.VerifyCode,(string)TempData["verifyCode"], StringComparison.OrdinalIgnoreCase))
+            if (!string.Equals(request.VerifyCode, (string)TempData["verifyCode"], StringComparison.OrdinalIgnoreCase))
             {
-                return Json(new MsgResult() {IsSuccess = false, Message = "验证码错误"});
+                return Json(new MsgResult() { IsSuccess = false, Message = "验证码错误" });
             }
             else
             {
@@ -53,7 +53,7 @@ namespace AdminWeb.Controllers
                 }
                 return Json(result);
             }
-           
+
         }
     }
 }

@@ -10,6 +10,7 @@ namespace ZSZ.Model.Model
     {
         public int Id { get; set; }
         public string Guid { get; set; }
+        public string TypeName { get; set; }
         public string Name { get; set; }
         public string ContronllerName { get; set; }
         public string ActionName { get; set; }

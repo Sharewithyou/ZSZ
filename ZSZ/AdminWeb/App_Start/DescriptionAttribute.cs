@@ -7,6 +7,9 @@ namespace AdminWeb.App_Start
 {
     public class DescriptionAttribute : Attribute
     {
-
+        /// <summary>
+        /// 操作名称
+        /// </summary>
+        public string Name { get; set; }
     }
 }

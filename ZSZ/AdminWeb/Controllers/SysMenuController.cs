@@ -8,9 +8,11 @@ using Newtonsoft.Json;
 using log4net;
 using AdminWeb.AutofacFolder;
 using ZSZ.Model.Model;
+using AdminWeb.App_Start;
 
 namespace AdminWeb.Controllers
 {
+    [Description(Name = "菜单管理")]
     public class SysMenuController : Controller
     {
         public ISysMenuService SysMenuService { get; set; }
@@ -20,19 +22,13 @@ namespace AdminWeb.Controllers
             this.SysMenuService = sysMenuService;
         }
 
-        /// <summary>
-        /// 菜单管理首页
-        /// </summary>
-        /// <returns></returns>
+        [Description(Name = "浏览")]     
         public ActionResult Index()
         {
             return View();
         }
 
-        /// <summary>
-        /// 增加菜单页
-        /// </summary>
-        /// <returns></returns>
+        [Description(Name = "增加菜单页")]
         public ActionResult AddMenuPage(int id = 0)
         {
             if (id < 0)
@@ -52,10 +48,9 @@ namespace AdminWeb.Controllers
 
         }
 
-        /// <summary>
-        /// 修改菜单页
-        /// </summary>
-        /// <returns></returns>
+
+
+        [Description(Name = "修改菜单页")]
         public ActionResult UpdateMenuPage(int id = 0)
         {
             if (id < 0)
@@ -95,33 +90,22 @@ namespace AdminWeb.Controllers
             return Json(result);
         }
 
-        /// <summary>
-        /// 增加节点
-        /// </summary>
-        /// <param name="node"></param>
-        /// <returns></returns>
+
+        [Description(Name = "增加菜单")]       
         public ActionResult AddMenuNode(SysMenus node)
         {
             var result = SysMenuService.AddMenuNode(node);
             return Json(result);
         }
-
-        /// <summary>
-        /// 跟新节点
-        /// </summary>
-        /// <param name="node"></param>
-        /// <returns></returns>
+    
+        [Description(Name = "修改菜单")]
         public ActionResult UpdateMenuNode(SysMenus node)
         {
             var result = SysMenuService.UpdateMenuNode(node);
             return Json(result);
         }
 
-        /// <summary>
-        /// 标记删除节点
-        /// </summary>
-        /// <param name="node"></param>
-        /// <returns></returns>
+        [Description(Name = "删除菜单")]
         public ActionResult MarkDeleteNode(SysMenus node)
         {
             var result = SysMenuService.MarkDeleteNode(node);

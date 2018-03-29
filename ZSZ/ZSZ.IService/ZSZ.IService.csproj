@@ -52,6 +52,7 @@
     <Compile Include="ILoginService.cs" />
     <Compile Include="ISysMenuService.cs" />
     <Compile Include="IAdminUserService.cs" />
+    <Compile Include="ISysRoleService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
