@@ -54,6 +54,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdminUserDal.cs" />
     <Compile Include="BaseDal.cs" />
     <Compile Include="DbContextFactory.cs" />
     <Compile Include="EFDbCommandInterceptor.cs" />

@@ -54,9 +54,9 @@ namespace ZSZ.DAL
                 }
                 else
                 {
-                    log.InfoFormat("\r\n执行时间:{0} 秒\r\n-->ScalarExecuted.Command:{1}\r\n", duration.TotalSeconds, command.CommandText);
+                    log.InfoFormat("\r\n执行时间:{0} 秒\r\n-->ScalarExecuted.Command:{1}\r\n-->Params:{2}", duration.TotalSeconds, command.CommandText, parameters);
                 }
-            }           
+            }
         }
 
         public void NonQueryExecuted(DbCommand command, DbCommandInterceptionContext<int> interceptionContext)

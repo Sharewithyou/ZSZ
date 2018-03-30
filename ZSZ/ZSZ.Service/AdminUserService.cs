@@ -23,14 +23,7 @@ namespace ZSZ.Service
             this.AdminUerDal = currentDal;
         }
 
-        public MsgResult AddAdminUser(AdminUser user)
-        {
-            MsgResult result = new MsgResult();
-            T_AdminUsers admin = new T_AdminUsers();
-            admin = Mapper.Map<T_AdminUsers>(user);
-            result = AddEntity(admin);
-            return result;
-        }
+     
 
     
     }
