@@ -12,7 +12,9 @@ namespace ZSZ.Model.Entity
 
         public int Id { get; set; }
         public string Guid { get; set; }
-        public string Name { get; set; }
+        public string TypeName { get; set; }
+        public string OperateName { get; set; }
+        public bool IsNotShow { get; set; }
         public string ContronllerName { get; set; }
         public string ActionName { get; set; }
         public bool IsDeleted { get; set; }

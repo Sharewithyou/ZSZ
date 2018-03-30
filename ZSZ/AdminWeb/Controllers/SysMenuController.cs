@@ -22,13 +22,13 @@ namespace AdminWeb.Controllers
             this.SysMenuService = sysMenuService;
         }
 
-        [Description(Name = "浏览")]     
+        [Description(Name = "浏览")]
         public ActionResult Index()
         {
             return View();
         }
 
-        [Description(Name = "增加菜单页")]
+        [Description(Name = "增加菜单页", IsNotShow = true)]
         public ActionResult AddMenuPage(int id = 0)
         {
             if (id < 0)
@@ -50,7 +50,7 @@ namespace AdminWeb.Controllers
 
 
 
-        [Description(Name = "修改菜单页")]
+        [Description(Name = "修改菜单页", IsNotShow = true)]
         public ActionResult UpdateMenuPage(int id = 0)
         {
             if (id < 0)
@@ -69,21 +69,15 @@ namespace AdminWeb.Controllers
             }
         }
 
-        /// <summary>
-        /// 获取菜单节点树数据
-        /// </summary>
-        /// <returns></returns>
+        [Description(Name = "获取菜单树数据", IsNotShow = true)]     
         public ActionResult GetMenuTreeNodeData()
         {
             var result = SysMenuService.GetMenuTreeNodeData();
             return Json(result);
         }
 
-        /// <summary>
-        /// 获取菜单子节点数据
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
+
+        [Description(Name = "获取菜单树子节点数据", IsNotShow = true)]      
         public ActionResult GetMenuTreeNodeById(int id = 0)
         {
             var result = SysMenuService.GetMenuTreeChildNodeListById(id);
@@ -91,13 +85,13 @@ namespace AdminWeb.Controllers
         }
 
 
-        [Description(Name = "增加菜单")]       
+        [Description(Name = "增加菜单")]
         public ActionResult AddMenuNode(SysMenus node)
         {
             var result = SysMenuService.AddMenuNode(node);
             return Json(result);
         }
-    
+
         [Description(Name = "修改菜单")]
         public ActionResult UpdateMenuNode(SysMenus node)
         {

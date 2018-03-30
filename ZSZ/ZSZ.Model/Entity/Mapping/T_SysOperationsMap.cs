@@ -15,7 +15,12 @@ namespace ZSZ.Model.Entity.Mapping
                 .IsRequired()
                 .HasMaxLength(32);
 
-            this.Property(t => t.Name)
+            this.Property(t => t.TypeName)
+                .IsRequired()
+                .HasMaxLength(100);
+
+
+            this.Property(t => t.OperateName)
                 .IsRequired()
                 .HasMaxLength(100);
 
@@ -31,7 +36,9 @@ namespace ZSZ.Model.Entity.Mapping
             this.ToTable("T_SysOperations");
             this.Property(t => t.Id).HasColumnName("Id");
             this.Property(t => t.Guid).HasColumnName("Guid");
-            this.Property(t => t.Name).HasColumnName("Name");
+            this.Property(t => t.TypeName).HasColumnName("TypeName");
+            this.Property(t => t.OperateName).HasColumnName("OperateName");
+            this.Property(t => t.IsNotShow).HasColumnName("IsNotShow");
             this.Property(t => t.ContronllerName).HasColumnName("ContronllerName");
             this.Property(t => t.ActionName).HasColumnName("ActionName");
             this.Property(t => t.IsDeleted).HasColumnName("IsDeleted");

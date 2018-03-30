@@ -56,6 +56,7 @@
     <Compile Include="IBaseDal.cs" />
     <Compile Include="ILoginDal.cs" />
     <Compile Include="ISysMenuDal.cs" />
+    <Compile Include="ISysOperationDal.cs" />
     <Compile Include="ISysRoleDal.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

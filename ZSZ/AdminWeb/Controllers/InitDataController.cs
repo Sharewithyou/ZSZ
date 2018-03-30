@@ -19,9 +19,13 @@ namespace AdminWeb.Controllers
 
         public ISysRoleService SysRoleService { get; set; }
 
-        public InitDataController(ISysRoleService currntService)
+        public ISysOperationService SysOperationService { get; set; }
+
+
+        public InitDataController(ISysRoleService currntService, ISysOperationService sysOperationService)
         {
             this.SysRoleService = currntService;
+            this.SysOperationService = sysOperationService;
         }
 
         // GET: InitData
@@ -31,6 +35,9 @@ namespace AdminWeb.Controllers
 
             //清空角色表
             SysRoleService.Clear(typeof(T_SysRoles).Name);
+
+            //清空权限表
+            SysOperationService.Clear(typeof(T_SysOperations).Name);
 
             #endregion
             using (TransactionScope ts = new TransactionScope())
@@ -49,7 +56,9 @@ namespace AdminWeb.Controllers
 
                 #region 2 , 操作权限初始化
 
-                List<SysOperations> list = new List<SysOperations>();
+                //List<SysOperations> list = new List<SysOperations>();
+
+                List<T_SysOperations> list = new List<T_SysOperations>();
 
                 //创建控制器类型列表
                 List<Type> controllerTypes = new List<Type>();
@@ -72,15 +81,22 @@ namespace AdminWeb.Controllers
                     foreach (var action in actions)
                     {
                         var attr = ((DescriptionAttribute)action.GetCustomAttributes(typeof(DescriptionAttribute)).FirstOrDefault()).Name;
-                        SysOperations model = new SysOperations();
+                        var isNotShow = ((DescriptionAttribute)action.GetCustomAttributes(typeof(DescriptionAttribute)).FirstOrDefault()).IsNotShow;
+                        T_SysOperations model = new T_SysOperations();
                         model.ContronllerName = controller.Name.Replace("Controller", "");
                         model.ActionName = action.Name;
                         model.TypeName = typeName;
-                        model.Name = attr;
+                        model.OperateName = attr;
+                        model.Guid = Guid.NewGuid().ToString("N");
+                        model.CreateUser = 1;
+                        model.CreateTime = DateTime.Now;
+                        if (isNotShow)
+                            model.IsNotShow = true;
                         list.Add(model);
                     }
                 }
 
+                MsgResult result = SysOperationService.AddRange(list);
                 #endregion
             }
 

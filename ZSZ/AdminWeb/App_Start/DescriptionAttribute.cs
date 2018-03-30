@@ -11,5 +11,10 @@ namespace AdminWeb.App_Start
         /// 操作名称
         /// </summary>
         public string Name { get; set; }
+
+        /// <summary>
+        /// 是否在授权时展示
+        /// </summary>
+        public bool IsNotShow { get; set; }
     }
 }
