@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ZSZ.Model;
-using ZSZ.Model.Entity;
+using ZSZ.Model.Models;
 
 namespace ZSZ.IDAL
 {

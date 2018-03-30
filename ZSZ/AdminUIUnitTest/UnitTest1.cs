@@ -2,9 +2,9 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ZSZ.Common;
 using ZSZ.IService;
-using ZSZ.Model.Model;
 using ZSZ.Service;
 using ZSZ.IDAL;
+using ZSZ.Model.Models.DTO;
 
 namespace AdminUIUnitTest
 {

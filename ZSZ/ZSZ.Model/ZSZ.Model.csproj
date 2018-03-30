@@ -11,6 +11,7 @@
     <AssemblyName>ZSZ.Model</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -50,43 +51,44 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Entity\Mapping\T_AdminUsersMap.cs" />
-    <Compile Include="Entity\Mapping\T_GroupRolesMap.cs" />
-    <Compile Include="Entity\Mapping\T_MenuPermissionsMap.cs" />
-    <Compile Include="Entity\Mapping\T_OperatePermissionsMap.cs" />
-    <Compile Include="Entity\Mapping\T_RolePermissionsMap.cs" />
-    <Compile Include="Entity\Mapping\T_SysGroupUsersMap.cs" />
-    <Compile Include="Entity\Mapping\T_SysLogMap.cs" />
-    <Compile Include="Entity\Mapping\T_SysMenusMap.cs" />
-    <Compile Include="Entity\Mapping\T_SysOperationsMap.cs" />
-    <Compile Include="Entity\Mapping\T_SysPermissionsMap.cs" />
-    <Compile Include="Entity\Mapping\T_SysRolesMap.cs" />
-    <Compile Include="Entity\Mapping\T_UserGroupsMap.cs" />
-    <Compile Include="Entity\Mapping\T_UserRolesMap.cs" />
-    <Compile Include="Entity\T_AdminUsers.cs" />
-    <Compile Include="Entity\T_GroupRoles.cs" />
-    <Compile Include="Entity\T_MenuPermissions.cs" />
-    <Compile Include="Entity\T_OperatePermissions.cs" />
-    <Compile Include="Entity\T_RolePermissions.cs" />
-    <Compile Include="Entity\T_SysGroupUsers.cs" />
-    <Compile Include="Entity\T_SysLog.cs" />
-    <Compile Include="Entity\T_SysMenus.cs" />
-    <Compile Include="Entity\T_SysOperations.cs" />
-    <Compile Include="Entity\T_SysPermissions.cs" />
-    <Compile Include="Entity\T_SysRoles.cs" />
-    <Compile Include="Entity\T_UserGroups.cs" />
-    <Compile Include="Entity\T_UserRoles.cs" />
-    <Compile Include="Model\AdminUser.cs" />
-    <Compile Include="Model\MsgResult.cs" />
-    <Compile Include="Model\Request\LoginRequest.cs" />
-    <Compile Include="Model\SysMenus.cs" />
-    <Compile Include="Model\SysOperations.cs" />
-    <Compile Include="Model\ZtreeNode.cs" />
+    <Compile Include="Models\DTO\AdminUser.cs" />
+    <Compile Include="Models\DTO\MsgResult.cs" />
+    <Compile Include="Models\DTO\Request\LoginRequest.cs" />
+    <Compile Include="Models\DTO\SysMenus.cs" />
+    <Compile Include="Models\DTO\SysOperations.cs" />
+    <Compile Include="Models\DTO\ZtreeNode.cs" />
+    <Compile Include="Models\Mapping\T_AdminUsersMap.cs" />
+    <Compile Include="Models\Mapping\T_GroupRolesMap.cs" />
+    <Compile Include="Models\Mapping\T_MenuPermissionsMap.cs" />
+    <Compile Include="Models\Mapping\T_OperatePermissionsMap.cs" />
+    <Compile Include="Models\Mapping\T_RolePermissionsMap.cs" />
+    <Compile Include="Models\Mapping\T_SysGroupUsersMap.cs" />
+    <Compile Include="Models\Mapping\T_SysLogMap.cs" />
+    <Compile Include="Models\Mapping\T_SysMenusMap.cs" />
+    <Compile Include="Models\Mapping\T_SysOperationsMap.cs" />
+    <Compile Include="Models\Mapping\T_SysPermissionsMap.cs" />
+    <Compile Include="Models\Mapping\T_SysRolesMap.cs" />
+    <Compile Include="Models\Mapping\T_UserGroupsMap.cs" />
+    <Compile Include="Models\Mapping\T_UserRolesMap.cs" />
+    <Compile Include="Models\T_AdminUsers.cs" />
+    <Compile Include="Models\T_GroupRoles.cs" />
+    <Compile Include="Models\T_MenuPermissions.cs" />
+    <Compile Include="Models\T_OperatePermissions.cs" />
+    <Compile Include="Models\T_RolePermissions.cs" />
+    <Compile Include="Models\T_SysGroupUsers.cs" />
+    <Compile Include="Models\T_SysLog.cs" />
+    <Compile Include="Models\T_SysMenus.cs" />
+    <Compile Include="Models\T_SysOperations.cs" />
+    <Compile Include="Models\T_SysPermissions.cs" />
+    <Compile Include="Models\T_SysRoles.cs" />
+    <Compile Include="Models\T_UserGroups.cs" />
+    <Compile Include="Models\T_UserRoles.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

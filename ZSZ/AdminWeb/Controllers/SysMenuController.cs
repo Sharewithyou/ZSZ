@@ -7,8 +7,8 @@ using ZSZ.IService;
 using Newtonsoft.Json;
 using log4net;
 using AdminWeb.AutofacFolder;
-using ZSZ.Model.Model;
 using AdminWeb.App_Start;
+using ZSZ.Model.Models.DTO;
 
 namespace AdminWeb.Controllers
 {

@@ -8,8 +8,8 @@ using System.Web;
 using System.Web.Mvc;
 using AdminWeb.App_Start;
 using ZSZ.IService;
-using ZSZ.Model.Entity;
-using ZSZ.Model.Model;
+using ZSZ.Model.Models;
+using ZSZ.Model.Models.DTO;
 
 namespace AdminWeb.Controllers
 {

@@ -4,8 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using ZSZ.Model;
-using ZSZ.Model.Entity;
-using ZSZ.Model.Model;
+using ZSZ.Model.Models;
+using ZSZ.Model.Models.DTO;
 
 namespace AdminWeb.AutoMapper
 {

@@ -5,8 +5,8 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using ZSZ.Model;
-using ZSZ.Model.Entity;
-using ZSZ.Model.Model;
+using ZSZ.Model.Models;
+using ZSZ.Model.Models.DTO;
 
 namespace ZSZ.IService
 {

@@ -7,8 +7,8 @@ using System.Web.Mvc;
 using AdminWeb.App_Start;
 using ZSZ.Common;
 using ZSZ.IService;
-using ZSZ.Model.Model;
-using ZSZ.Model.Model.Request;
+using ZSZ.Model.Models.DTO;
+using ZSZ.Model.Models.DTO.Request;
 
 namespace AdminWeb.Controllers
 {

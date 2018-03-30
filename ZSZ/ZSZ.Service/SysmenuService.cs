@@ -6,12 +6,12 @@ using System.Text;
 using ZSZ.Model;
 using ZSZ.IDAL;
 using ZSZ.IService;
-using ZSZ.Model.Model;
 using AutoMapper;
 using Newtonsoft.Json;
 using log4net;
 using ZSZ.Common;
-using ZSZ.Model.Entity;
+using ZSZ.Model.Models;
+using ZSZ.Model.Models.DTO;
 
 
 namespace ZSZ.Service

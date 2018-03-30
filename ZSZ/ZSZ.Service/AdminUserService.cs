@@ -9,8 +9,8 @@ using AutoMapper;
 using ZSZ.IDAL;
 using ZSZ.IService;
 using ZSZ.Model;
-using ZSZ.Model.Entity;
-using ZSZ.Model.Model;
+using ZSZ.Model.Models;
+using ZSZ.Model.Models.DTO;
 using ZSZ.Service;
 
 namespace ZSZ.Service

@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using ZSZ.IDAL;
 using ZSZ.IService;
-using ZSZ.Model.Model;
+using ZSZ.Model.Models.DTO;
 
 namespace ZSZ.Service
 {

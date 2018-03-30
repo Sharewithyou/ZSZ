@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ZSZ.Model;
-using ZSZ.Model.Entity;
-using ZSZ.Model.Model;
-using ZSZ.Model.Model.Request;
+using ZSZ.Model.Models;
+using ZSZ.Model.Models.DTO;
+using ZSZ.Model.Models.DTO.Request;
 
 namespace ZSZ.IService
 {

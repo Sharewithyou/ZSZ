@@ -3,8 +3,8 @@ using System.Data.Entity.Infrastructure;
 using System.Data.Entity.Infrastructure.Interception;
 using log4net;
 using ZSZ.Model;
-using ZSZ.Model.Entity;
-using ZSZ.Model.Entity.Mapping;
+using ZSZ.Model.Models;
+using ZSZ.Model.Models.Mapping;
 
 namespace ZSZ.DAL.Models
 {
