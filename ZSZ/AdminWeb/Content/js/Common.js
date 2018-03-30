@@ -76,7 +76,7 @@ var AjaxUtil = {
 
         $.ajax({
             url: url,
-            type: type,
+            type: type,          
             data: ajaxObj.options.data,
             dataType: ajaxObj.options.dataType,
             success: function (rep) {

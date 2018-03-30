@@ -23,7 +23,8 @@ namespace ZSZ.DAL.Models
             //    log.InfoFormat("EFÖ´ÐÐSQL£º{0}", sql);
             //};
 
-            DbInterception.Add(new EFDbCommandInterceptor());
+            //DbInterception.Add(new EFDbCommandInterceptor());
+            DbInterception.Add(new NewInterceptor());
         }
 
         public DbSet<T_AdminUsers> T_AdminUsers { get; set; }

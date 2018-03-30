@@ -84,12 +84,6 @@ namespace AdminWeb.Controllers
                 #endregion
             }
 
-
-
-
-
-
-
             return null;
         }
 
@@ -97,6 +91,24 @@ namespace AdminWeb.Controllers
         {
             MsgResult result = SysRoleService.Clear(typeof(T_SysRoles).Name);
             return View();
+        }
+
+        public ActionResult Test1()
+        {
+            return View();
+
+        }
+
+        public ActionResult Test2(string name)
+        {
+            T_SysRoles role = new T_SysRoles();
+            role.Guid = Guid.NewGuid().ToString("N");
+            role.Name = "超级管理员";
+            role.Description = "拥有所有的权限";
+            role.CreateUser = 1;
+            role.CreateTime = DateTime.Now;
+            SysRoleService.AddEntity(role);
+            return null;
         }
     }
 }
