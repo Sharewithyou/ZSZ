@@ -1121,6 +1121,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\DescriptionAttribute.cs" />
+    <Compile Include="App_Start\MiniProfilerModule.cs" />
     <Compile Include="App_Start\RoleAuthorizeAttribute.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="AutofacFolder\AutofacConfig.cs" />

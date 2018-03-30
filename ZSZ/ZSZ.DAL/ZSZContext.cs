@@ -1,5 +1,6 @@
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
+using System.Data.Entity.Infrastructure.Interception;
 using log4net;
 using ZSZ.Model;
 using ZSZ.Model.Entity;
@@ -18,9 +19,11 @@ namespace ZSZ.DAL.Models
         public ZSZContext()
             : base("Name=EfConnStr")
         {
-            this.Database.Log = (sql) => {
-                log.InfoFormat("EFÖ´ÐÐSQL£º{0}", sql);
-            };
+            //this.Database.Log = (sql) => {
+            //    log.InfoFormat("EFÖ´ÐÐSQL£º{0}", sql);
+            //};
+
+            DbInterception.Add(new EFDbCommandInterceptor());
         }
 
         public DbSet<T_AdminUsers> T_AdminUsers { get; set; }
