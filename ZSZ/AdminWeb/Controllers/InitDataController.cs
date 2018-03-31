@@ -16,16 +16,18 @@ namespace AdminWeb.Controllers
 
     public class InitDataController : Controller
     {
+        public IInitDataService InitDataService { get; set; }
 
         public ISysRoleService SysRoleService { get; set; }
 
         public ISysOperationService SysOperationService { get; set; }
 
 
-        public InitDataController(ISysRoleService currntService, ISysOperationService sysOperationService)
+        public InitDataController(ISysRoleService currntService, ISysOperationService sysOperationService, IInitDataService initDataService)
         {
             this.SysRoleService = currntService;
             this.SysOperationService = sysOperationService;
+            this.InitDataService = initDataService;
         }
 
         // GET: InitData
@@ -105,7 +107,46 @@ namespace AdminWeb.Controllers
 
         public ActionResult Test()
         {
-            MsgResult result = SysRoleService.Clear(typeof(T_SysRoles).Name);
+            //MsgResult result = SysRoleService.Clear(typeof(T_SysRoles).Name);
+            List<T_SysOperations> list = new List<T_SysOperations>();
+
+            //创建控制器类型列表
+            List<Type> controllerTypes = new List<Type>();
+
+            //加载程序集  
+            var assembly = Assembly.Load("AdminWeb");
+
+            controllerTypes.AddRange(assembly.GetTypes().Where(type => typeof(Controller).IsAssignableFrom(type) & type.IsDefined(typeof(DescriptionAttribute))));
+
+            foreach (var controller in controllerTypes)
+            {
+                //var controller = assembly.GetTypes().Where(type => type.Name == itemType.Name).FirstOrDefault();
+
+                //获取控制器的标记属性
+                var typeName = ((DescriptionAttribute)controller.GetCustomAttributes(typeof(DescriptionAttribute)).FirstOrDefault()).Name;
+
+                //获取所有的标记方法
+                var actions = controller.GetMethods().Where(method => method.IsDefined(typeof(DescriptionAttribute)));
+
+                foreach (var action in actions)
+                {
+                    var attr = ((DescriptionAttribute)action.GetCustomAttributes(typeof(DescriptionAttribute)).FirstOrDefault()).Name;
+                    var isNotShow = ((DescriptionAttribute)action.GetCustomAttributes(typeof(DescriptionAttribute)).FirstOrDefault()).IsNotShow;
+                    T_SysOperations model = new T_SysOperations();
+                    model.ContronllerName = controller.Name.Replace("Controller", "");
+                    model.ActionName = action.Name;
+                    model.TypeName = typeName;
+                    model.OperateName = attr;
+                    model.Guid = Guid.NewGuid().ToString("N");
+                    model.CreateUser = 1;
+                    model.CreateTime = DateTime.Now;
+                    if (isNotShow)
+                        model.IsNotShow = true;
+                    list.Add(model);
+                }
+            }
+
+            InitDataService.InitData(list);
             return View();
         }
 

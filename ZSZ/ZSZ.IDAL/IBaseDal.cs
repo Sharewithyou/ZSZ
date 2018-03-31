@@ -15,13 +15,13 @@ namespace ZSZ.IDAL
         /// </summary>
         /// <param name="t"></param>
         /// <returns></returns>
-        void Add(T t);
+        T Add(T t);
 
         /// <summary>
         /// 批量增加实体
         /// </summary>
         /// <param name="list"></param>
-        void AddRange(List<T> list);
+        List<T> AddRange(List<T> list);
 
         /// <summary>
         /// 标记删除 标记当前对象，必须把必填字段都填写，否则会报错：System.Data.Entity.Validation.DbEntityValidationException

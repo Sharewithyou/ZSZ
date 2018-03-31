@@ -17,7 +17,7 @@ namespace ZSZ.DAL
 
         private DbContext dbContext = DbContextFactory.Create();
 
-        public void Add(T t)
+        public T Add(T t)
         {
             //set只是获取EF模型的一种方式而已，在适合使用它的场景使用，比如要在底层做一些封装的时候。
             //entry 获取给定实体的DbEntityEntry对象，该对象提供对实体信息的访问以及对实体执行操作的能力。
@@ -30,13 +30,13 @@ namespace ZSZ.DAL
             //向上下文添加新实体的另一种方法是将其状态更改为已添加
             //dbContext.Entry<T>(t).State = EntityState.Added;
 
-            dbContext.Set<T>().Add(t);
+            return dbContext.Set<T>().Add(t);
         }
 
-        public void AddRange(List<T> list)
+        public List<T> AddRange(List<T> list)
         {
 
-            dbContext.Set<T>().AddRange(list);
+            return dbContext.Set<T>().AddRange(list).ToList();
         }
 
         /// <summary>

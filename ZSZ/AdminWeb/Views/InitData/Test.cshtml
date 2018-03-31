@@ -1,15 +1,13 @@
 ﻿@using MvcSiteMapProvider.Collections.Specialized
-@using ZSZ.Model.Model
-
 @{
     Layout = null;
-    List<SysOperations> list = new List<SysOperations>();
-    SysOperations model = new SysOperations();
-    model.ActionName = "Index";
-    model.ContronllerName = "SysMenu";
-    list.Add(model);
-    SourceMetadataDictionary dic = new SourceMetadataDictionary();
-    dic["rolePermisisionList"] = list;
+    //List<SysOperations> list = new List<SysOperations>();
+    //SysOperations model = new SysOperations();
+    //model.ActionName = "Index";
+    //model.ContronllerName = "SysMenu";
+    //list.Add(model);
+    //SourceMetadataDictionary dic = new SourceMetadataDictionary();
+    //dic["rolePermisisionList"] = list;
 }
 
 
@@ -23,7 +21,7 @@
 </head>
 <body>
     <div>
-        @Html.MvcSiteMap().Menu("BootstrapMenuHelperModel", dic)
+        @*@Html.MvcSiteMap().Menu("BootstrapMenuHelperModel", dic)*@
     </div>
     @StackExchange.Profiling.MiniProfiler.RenderIncludes()
 </body>

@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ZSZ.Model.Models;
+using ZSZ.Model.Models.DTO;
 
 namespace ZSZ.IService
 {
@@ -11,6 +13,6 @@ namespace ZSZ.IService
         /// <summary>
         /// 初始化所有权限
         /// </summary>
-        void InitOperationData();
+        MsgResult InitData(List<T_SysOperations> list);
     }
 }
