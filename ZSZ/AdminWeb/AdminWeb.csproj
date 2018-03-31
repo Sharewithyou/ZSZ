@@ -1121,9 +1121,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\DescriptionAttribute.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\MiniProfilerModule.cs" />
     <Compile Include="App_Start\RoleAuthorizeAttribute.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\ZszAuthorizeFilter.cs" />
+    <Compile Include="App_Start\ZszExceptionFilter.cs" />
     <Compile Include="AutofacFolder\AutofacConfig.cs" />
     <Compile Include="AutofacFolder\LoggingModule.cs" />
     <Compile Include="AutoMapper\SourceProfile.cs" />
@@ -1136,6 +1139,8 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="log4netConfig\LogContent.cs" />
+    <Compile Include="log4netConfig\MyLog4Layout.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

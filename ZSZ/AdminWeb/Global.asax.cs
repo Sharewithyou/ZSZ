@@ -10,6 +10,7 @@ using System.Reflection;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
+using AdminWeb.App_Start;
 using StackExchange.Profiling;
 using StackExchange.Profiling.EntityFramework6;
 
@@ -33,7 +34,12 @@ namespace AdminWeb
             //自定义
             log4net.Config.XmlConfigurator.ConfigureAndWatch(new System.IO.FileInfo(Server.MapPath("~") + @"/Log4Net.config"));
 
+
+            //EF性能监视
             MiniProfilerEF6.Initialize();
+
+            FilterConfig.RegisterFilters(GlobalFilters.Filters);
+
 
         }
 

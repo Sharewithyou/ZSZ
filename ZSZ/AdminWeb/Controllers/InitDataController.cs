@@ -7,6 +7,7 @@ using System.Transactions;
 using System.Web;
 using System.Web.Mvc;
 using AdminWeb.App_Start;
+using log4net;
 using ZSZ.IService;
 using ZSZ.Model.Models;
 using ZSZ.Model.Models.DTO;
@@ -22,6 +23,7 @@ namespace AdminWeb.Controllers
 
         public ISysOperationService SysOperationService { get; set; }
 
+        private static ILog log = LogManager.GetLogger(typeof(InitDataController));
 
         public InitDataController(ISysRoleService currntService, ISysOperationService sysOperationService, IInitDataService initDataService)
         {
@@ -107,6 +109,7 @@ namespace AdminWeb.Controllers
 
         public ActionResult Test()
         {
+            
             //MsgResult result = SysRoleService.Clear(typeof(T_SysRoles).Name);
             List<T_SysOperations> list = new List<T_SysOperations>();
 

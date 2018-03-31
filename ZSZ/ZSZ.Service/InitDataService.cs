@@ -31,16 +31,21 @@ namespace ZSZ.Service
             try
             {
                 //1 , 清除数据
-                AdminUserDal.Clear(typeof(T_AdminUsers).Name);
-                SysRoleDal.Clear(typeof(T_SysRoles).Name);
-                AdminUserDal.Clear(typeof(T_SysPermissions).Name);
-                SysOperationDal.Clear(typeof(T_SysOperations).Name);
+
+                //AdminUserDal.Clear(typeof(T_UserRoles).Name);
+                //AdminUserDal.Clear(typeof(T_RolePermissions).Name);
+                //AdminUserDal.Clear(typeof(T_OperatePermissions).Name);
+
+                //AdminUserDal.Clear(typeof(T_AdminUsers).Name);
+                //SysRoleDal.Clear(typeof(T_SysRoles).Name);
+                //AdminUserDal.Clear(typeof(T_SysPermissions).Name);
+                //SysOperationDal.Clear(typeof(T_SysOperations).Name);
 
                 //2 , 初始化数据
 
                 //用户
                 T_AdminUsers adminUser = new T_AdminUsers();
-                adminUser.Phone = "17512039375";
+                adminUser.Phone = "17512039375_1111111111111111";
                 adminUser.CreateTime = DateTime.Now;
                 adminUser.CreateUser = 1;
                 adminUser.Salt = "123456";
@@ -65,7 +70,7 @@ namespace ZSZ.Service
                 permission.Description = "操作权限";
                 permission.CreateUser = adminUser.Id;
                 permission.CreateTime = DateTime.Now;
-              
+
                 //增加数据
                 //var addUser = AdminUserDal.Add(adminUser);
                 var addRole = SysRoleDal.Add(role);
@@ -77,7 +82,7 @@ namespace ZSZ.Service
                 T_UserRoles userRole = new T_UserRoles();
                 userRole.UserId = addUser.Id;
                 userRole.RoleId = addRole.Id;
-               
+
 
                 //用户角色
                 adminUser.T_UserRoles.Add(userRole);
