@@ -61,6 +61,7 @@
     <Compile Include="LoginDal.cs" />
     <Compile Include="NewInterceptor.cs" />
     <Compile Include="SysOperationDal.cs" />
+    <Compile Include="SysPermissionDal.cs" />
     <Compile Include="SysRoleDal.cs" />
     <Compile Include="ZSZContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
