@@ -1142,6 +1142,7 @@
     <Compile Include="log4netConfig\LogContent.cs" />
     <Compile Include="log4netConfig\MyLog4Layout.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SiteMapConfig\MyDynamicNodeProvider.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />

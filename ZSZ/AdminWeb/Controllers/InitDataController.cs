@@ -180,5 +180,10 @@ namespace AdminWeb.Controllers
             SysRoleService.AddEntity(role);
             return null;
         }
+
+        public ActionResult InitMenu()
+        {
+            return null;
+        }
     }
 }
