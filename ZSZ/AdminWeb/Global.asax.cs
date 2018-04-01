@@ -38,6 +38,7 @@ namespace AdminWeb
             //EF性能监视
             MiniProfilerEF6.Initialize();
 
+            //注册过滤器
             FilterConfig.RegisterFilters(GlobalFilters.Filters);
 
 

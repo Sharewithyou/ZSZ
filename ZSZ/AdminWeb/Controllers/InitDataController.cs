@@ -155,6 +155,16 @@ namespace AdminWeb.Controllers
 
         public ActionResult Test1()
         {
+            //log.Fatal("123456");
+            //if (!log4net.LogManager.GetRepository().Configured)
+            //{
+            //    // log4net not configured
+            //    foreach (log4net.Util.LogLog message in log4net.LogManager.GetRepository().ConfigurationMessages.Cast<log4net.Util.LogLog>())
+            //    {
+            //        // evaluate configuration message
+            //    }
+            //}
+
             return View();
 
         }

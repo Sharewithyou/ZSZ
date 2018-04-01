@@ -10,13 +10,24 @@ namespace AdminWeb.log4netConfig
     /// </summary>
     public class LogContent
     {
-        public string Reason { get; set; }
+        /// <summary>
+        /// 日志消息
+        /// </summary>
+        public string Message { get; set; }
 
-       
+        /// <summary>
+        /// 异常消息
+        /// </summary>
+        public string ExceptoiopnMsg { get; set; }
 
-        public LogContent(string reason)
+
+
+
+
+        public LogContent(string msg, string ex)
         {
-            this.Reason = reason;
+            this.Message = msg;
+            this.ExceptoiopnMsg = ex;
         }
     }
 }

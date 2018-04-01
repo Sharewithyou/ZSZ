@@ -28,8 +28,7 @@ namespace ZSZ.Service
         public MsgResult InitData(List<T_SysOperations> list)
         {
             MsgResult result = new MsgResult();
-            try
-            {
+         
                 //1 , 清除数据
 
                 //AdminUserDal.Clear(typeof(T_UserRoles).Name);
@@ -115,12 +114,7 @@ namespace ZSZ.Service
                 //SysOperationDal.AddRange(list);
 
                 //adminUser.T_UserRoles.Add(role);
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }
+          
 
             return null;
         }
