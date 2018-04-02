@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<mvcSiteMap xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xmlns="http://mvcsitemap.codeplex.com/schemas/MvcSiteMap-File-4.0"
+            xsi:schemaLocation="http://mvcsitemap.codeplex.com/schemas/MvcSiteMap-File-4.0 MvcSiteMapSchema.xsd">
+
+  <mvcSiteMapNode title="root" controller="root" action="root">
+
+    <mvcSiteMapNode title="系统管理" clickable="false" controller="SysMenu" action="Index">
+      <mvcSiteMapNode title="菜单管理" controller="SysMenu" action="Index" />
+      <mvcSiteMapNode title="角色管理" controller="UserManage" action="Index" />
+      <mvcSiteMapNode title="权限管理" controller="SysPermission" action="Index" />
+    </mvcSiteMapNode>
+
+    <mvcSiteMapNode title="日志管理" clickable="false">
+      <mvcSiteMapNode title="测试菜单1" controller="Home" action="ChangePassword" />
+      <mvcSiteMapNode title="测试菜单2" controller="Home" action="Index"/>
+    </mvcSiteMapNode>
+
+  </mvcSiteMapNode>
+
+</mvcSiteMap>

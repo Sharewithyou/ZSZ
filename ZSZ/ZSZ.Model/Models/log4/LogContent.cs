@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace AdminWeb.log4netConfig
+namespace ZSZ.Model.Models.log4
 {
     /// <summary>
     /// 自定义日志输出对象

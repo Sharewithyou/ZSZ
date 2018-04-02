@@ -14,6 +14,7 @@ namespace ZSZ.Model.Models.DTO
         public string MenuUrl { get; set; }
         public int ParentId { get; set; }
         public int SortNum { get; set; }
+        public string IconFront { get; set; }
         public int CreateUser { get; set; }
         public System.DateTime CreateTime { get; set; }
 

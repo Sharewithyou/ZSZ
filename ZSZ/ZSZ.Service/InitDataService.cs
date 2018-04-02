@@ -44,7 +44,7 @@ namespace ZSZ.Service
 
                 //用户
                 T_AdminUsers adminUser = new T_AdminUsers();
-                adminUser.Phone = "17512039375_1111111111111111";
+                adminUser.Phone = "17512039375";
                 adminUser.CreateTime = DateTime.Now;
                 adminUser.CreateUser = 1;
                 adminUser.Salt = "123456";

@@ -24,12 +24,14 @@ namespace ZSZ.Model.Models.Mapping
 
             // Table & Column Mappings
             this.ToTable("T_SysMenus");
+
             this.Property(t => t.Id).HasColumnName("Id");
             this.Property(t => t.Guid).HasColumnName("Guid");
             this.Property(t => t.MenuName).HasColumnName("MenuName");
             this.Property(t => t.MenuUrl).HasColumnName("MenuUrl");
             this.Property(t => t.ParentId).HasColumnName("ParentId");
             this.Property(t => t.SortNum).HasColumnName("SortNum");
+            this.Property(t => t.IconFront).HasColumnName("IconFront");
             this.Property(t => t.IsDeleted).HasColumnName("IsDeleted");
             this.Property(t => t.CreateUser).HasColumnName("CreateUser");
             this.Property(t => t.CreateTime).HasColumnName("CreateTime");

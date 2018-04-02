@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using AdminWeb.log4netConfig;
 using log4net;
+using ZSZ.Model.Models.log4;
 
 namespace AdminWeb.App_Start
 {

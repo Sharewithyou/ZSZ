@@ -11,6 +11,7 @@ namespace AdminWeb.SiteMapConfig
         public override IEnumerable<DynamicNode> GetDynamicNodeCollection(ISiteMapNode node)
         {
             var list = new List<DynamicNode>();
+            return null;
         }
     }
 }

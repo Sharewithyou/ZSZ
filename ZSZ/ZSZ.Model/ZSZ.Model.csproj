@@ -57,6 +57,7 @@
     <Compile Include="Models\DTO\SysMenus.cs" />
     <Compile Include="Models\DTO\SysOperations.cs" />
     <Compile Include="Models\DTO\ZtreeNode.cs" />
+    <Compile Include="Models\log4\LogContent.cs" />
     <Compile Include="Models\Mapping\T_AdminUsersMap.cs" />
     <Compile Include="Models\Mapping\T_GroupRolesMap.cs" />
     <Compile Include="Models\Mapping\T_MenuPermissionsMap.cs" />

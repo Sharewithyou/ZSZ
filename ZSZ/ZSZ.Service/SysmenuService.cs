@@ -12,7 +12,7 @@ using log4net;
 using ZSZ.Common;
 using ZSZ.Model.Models;
 using ZSZ.Model.Models.DTO;
-
+using ZSZ.Model.Models.log4;
 
 namespace ZSZ.Service
 {
@@ -64,6 +64,7 @@ namespace ZSZ.Service
             {
                 result.IsSuccess = false;
                 result.Message = ex.Message;
+                logger.Fatal(new LogContent(ex.InnerException.Message, ex.Message));
             }
 
             return result;
