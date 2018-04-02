@@ -118,5 +118,10 @@ namespace ZSZ.Service
 
             return null;
         }
+
+        public MsgResult InitMenu(List<T_SysMenus> list)
+        {
+            return null;
+        }
     }
 }

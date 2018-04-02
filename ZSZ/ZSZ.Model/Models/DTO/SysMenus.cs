@@ -15,6 +15,7 @@ namespace ZSZ.Model.Models.DTO
         public int ParentId { get; set; }
         public int SortNum { get; set; }
         public string IconFront { get; set; }
+        public bool IsLeaf { get; set; }
         public int CreateUser { get; set; }
         public System.DateTime CreateTime { get; set; }
 

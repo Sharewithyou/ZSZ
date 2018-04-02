@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity.Validation;
 using System.Linq;
@@ -29,10 +30,11 @@ namespace ZSZ.Service
             MsgResult result = new MsgResult();
             try
             {
-                BaseDal.Add(entity);
+                T t= BaseDal.Add(entity);
                 BaseDal.SaveChanges();
                 result.IsSuccess = true;
                 result.Message = "增加成功";
+                result.Data = JsonConvert.SerializeObject(t);
             }
             catch (DbEntityValidationException ex)
             {
@@ -47,7 +49,7 @@ namespace ZSZ.Service
             catch (Exception ex)
             {
                 result.IsSuccess = false;
-                result.Message = "增加失败：" + ex.Message;
+                result.Message = "增加失败：" + ex.Message + " " + ex.InnerException.Message;
             }
 
             return result;

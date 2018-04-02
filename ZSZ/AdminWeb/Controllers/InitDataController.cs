@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using AdminWeb.App_Start;
 using log4net;
+using Newtonsoft.Json;
 using ZSZ.IService;
 using ZSZ.Model.Models;
 using ZSZ.Model.Models.DTO;
@@ -23,13 +24,17 @@ namespace AdminWeb.Controllers
 
         public ISysOperationService SysOperationService { get; set; }
 
+        public ISysMenuService SysMenuService { get; set; }
+
+
         private static ILog log = LogManager.GetLogger(typeof(InitDataController));
 
-        public InitDataController(ISysRoleService currntService, ISysOperationService sysOperationService, IInitDataService initDataService)
+        public InitDataController(ISysRoleService currntService, ISysOperationService sysOperationService, IInitDataService initDataService, ISysMenuService sysMenuService)
         {
             this.SysRoleService = currntService;
             this.SysOperationService = sysOperationService;
             this.InitDataService = initDataService;
+            this.SysMenuService = sysMenuService;
         }
 
         // GET: InitData
@@ -109,7 +114,7 @@ namespace AdminWeb.Controllers
 
         public ActionResult Test()
         {
-            
+
             //MsgResult result = SysRoleService.Clear(typeof(T_SysRoles).Name);
             List<T_SysOperations> list = new List<T_SysOperations>();
 
@@ -182,7 +187,44 @@ namespace AdminWeb.Controllers
         }
 
         public ActionResult InitMenu()
-        {
+        {           
+            var nodes = MvcSiteMapProvider.SiteMaps.Current.FindSiteMapNodeFromKey("root").ChildNodes;
+            foreach (var node in nodes)
+            {
+                if (!node.Clickable)
+                {
+                    T_SysMenus menu = new T_SysMenus();
+                    menu.Guid = Guid.NewGuid().ToString("N");
+                    menu.MenuName = node.Title;
+                    menu.MenuUrl = "";
+                    menu.ParentId = 0;
+                    menu.CreateTime = DateTime.Now;
+                    menu.CreateUser = 1;
+                    menu.IconFont = (string)node.Attributes["iconfont"];               
+                    var result = SysMenuService.AddEntity(menu);
+                    if (result.IsSuccess)
+                    {
+                        T_SysMenus addMenu = JsonConvert.DeserializeObject<T_SysMenus>(result.Data);
+                        var childNodes = node.ChildNodes;
+                        List<T_SysMenus> menuList = new List<T_SysMenus>();
+                        foreach (var childNode in childNodes)
+                        {
+                            T_SysMenus menuNew = new T_SysMenus();
+                            menuNew.Guid = Guid.NewGuid().ToString("N");
+                            menuNew.MenuName = childNode.Title;
+                            menuNew.MenuUrl = "/" + childNode.Controller + "/" + childNode.Action;
+                            menuNew.ParentId = addMenu.Id;
+                            menuNew.IsLeaf = true;
+                            menuNew.CreateTime = DateTime.Now;
+                            menuNew.CreateUser = 1;
+                            menuList.Add(menuNew);
+                        }
+
+                        var result1 = SysMenuService.AddRange(menuList);
+                    }
+
+                }
+            }
             return null;
         }
     }

@@ -31,7 +31,8 @@ namespace ZSZ.Model.Models.Mapping
             this.Property(t => t.MenuUrl).HasColumnName("MenuUrl");
             this.Property(t => t.ParentId).HasColumnName("ParentId");
             this.Property(t => t.SortNum).HasColumnName("SortNum");
-            this.Property(t => t.IconFront).HasColumnName("IconFront");
+            this.Property(t => t.IconFont).HasColumnName("IconFont");
+            this.Property(t => t.IsLeaf).HasColumnName("IsLeaf");
             this.Property(t => t.IsDeleted).HasColumnName("IsDeleted");
             this.Property(t => t.CreateUser).HasColumnName("CreateUser");
             this.Property(t => t.CreateTime).HasColumnName("CreateTime");
