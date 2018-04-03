@@ -65,6 +65,7 @@
   <ItemGroup>
     <Compile Include="AdminUserService.cs" />
     <Compile Include="BaseService.cs" />
+    <Compile Include="BtnPermissionService.cs" />
     <Compile Include="InitDataService.cs" />
     <Compile Include="LoginService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

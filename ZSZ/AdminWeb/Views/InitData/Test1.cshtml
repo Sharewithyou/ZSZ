@@ -1,4 +1,4 @@
-﻿
+﻿@using AdminWeb.Model
 @{
     Layout = null;
 }
@@ -11,6 +11,9 @@
     <title>Test1</title>
 </head>
 <body>
+    @{ 
+        BtnRoleHelper.IsValid("Init", "delete");
+    }
     <div> 
         <form method="post" action="/InitData/Test2">
             <input type="text" name="name" value="" />

@@ -71,6 +71,7 @@
     <Compile Include="Models\Mapping\T_SysRolesMap.cs" />
     <Compile Include="Models\Mapping\T_UserGroupsMap.cs" />
     <Compile Include="Models\Mapping\T_UserRolesMap.cs" />
+    <Compile Include="Models\PermissionType.cs" />
     <Compile Include="Models\T_AdminUsers.cs" />
     <Compile Include="Models\T_GroupRoles.cs" />
     <Compile Include="Models\T_MenuPermissions.cs" />

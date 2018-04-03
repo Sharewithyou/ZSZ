@@ -1,4 +1,5 @@
-﻿using Autofac;
+﻿using AdminWeb.Model;
+using Autofac;
 using Autofac.Integration.Mvc;
 using System;
 using System.Collections.Generic;
@@ -19,6 +20,8 @@ namespace AdminWeb.AutofacFolder
 
             //注册控制器
             builder.RegisterControllers(typeof(MvcApplication).Assembly).PropertiesAutowired();
+
+            builder.RegisterType<BtnRoleHelper>().PropertiesAutowired();
 
             //builder.RegisterType<EFProductRepository>().As<IProductRepository>();
 

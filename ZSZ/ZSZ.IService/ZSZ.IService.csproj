@@ -48,6 +48,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IBaseService.cs" />
+    <Compile Include="IBtnPermissionService.cs" />
     <Compile Include="IInitDataService.cs" />
     <Compile Include="ILoginService.cs" />
     <Compile Include="ISysMenuService.cs" />
