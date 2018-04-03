@@ -11,7 +11,7 @@ namespace ZSZ.IService
     public interface IInitDataService
     {
         /// <summary>
-        /// 初始化所有权限
+        /// 初始化所有数据
         /// </summary>
         MsgResult InitData(List<T_SysOperations> list);
 

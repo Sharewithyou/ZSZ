@@ -24,7 +24,15 @@ namespace ZSZ.DAL.Models
             //};
 
             //DbInterception.Add(new EFDbCommandInterceptor());
+
             DbInterception.Add(new NewInterceptor());
+
+            EntityFramework.Utilities.Configuration.Log = (sql) =>
+            {
+                log.InfoFormat("EntityFramework.Utilities 执行批量操作：{0}", sql);
+            };
+
+           
         }
 
         public DbSet<T_AdminUsers> T_AdminUsers { get; set; }

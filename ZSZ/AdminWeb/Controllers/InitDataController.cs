@@ -115,7 +115,52 @@ namespace AdminWeb.Controllers
         public ActionResult Test()
         {
 
-            //MsgResult result = SysRoleService.Clear(typeof(T_SysRoles).Name);
+            #region 初始化菜单
+
+            SysMenuService.Clear(typeof(T_SysMenus).Name);
+
+            var nodes = MvcSiteMapProvider.SiteMaps.Current.FindSiteMapNodeFromKey("root").ChildNodes;
+            foreach (var node in nodes)
+            {
+                if (!node.Clickable)
+                {
+                    T_SysMenus menu = new T_SysMenus();
+                    menu.Guid = Guid.NewGuid().ToString("N");
+                    menu.MenuName = node.Title;
+                    menu.MenuUrl = "";
+                    menu.ParentId = 0;
+                    menu.CreateTime = DateTime.Now;
+                    menu.CreateUser = 1;
+                    menu.IconFont = (string)node.Attributes["iconfont"];
+                    var result = SysMenuService.AddEntity(menu);
+                    if (result.IsSuccess)
+                    {
+                        T_SysMenus addMenu = JsonConvert.DeserializeObject<T_SysMenus>(result.Data);
+                        var childNodes = node.ChildNodes;
+                        List<T_SysMenus> menuList = new List<T_SysMenus>();
+                        foreach (var childNode in childNodes)
+                        {
+                            T_SysMenus menuNew = new T_SysMenus();
+                            menuNew.Guid = Guid.NewGuid().ToString("N");
+                            menuNew.MenuName = childNode.Title;
+                            menuNew.MenuUrl = "/" + childNode.Controller + "/" + childNode.Action;
+                            menuNew.ParentId = addMenu.Id;
+                            menuNew.IsLeaf = true;
+                            menuNew.CreateTime = DateTime.Now;
+                            menuNew.CreateUser = 1;
+                            menuList.Add(menuNew);
+                        }
+
+                        var resultNew = SysMenuService.AddRange(menuList);
+                    }
+
+                }
+            }
+
+            #endregion
+
+            #region 初始化权限操作列表
+
             List<T_SysOperations> list = new List<T_SysOperations>();
 
             //创建控制器类型列表
@@ -153,6 +198,8 @@ namespace AdminWeb.Controllers
                     list.Add(model);
                 }
             }
+
+            #endregion
 
             InitDataService.InitData(list);
             return View();
@@ -220,11 +267,18 @@ namespace AdminWeb.Controllers
                             menuList.Add(menuNew);
                         }
 
-                        var result1 = SysMenuService.AddRange(menuList);
+                        var resultNew = SysMenuService.AddRange(menuList);
                     }
 
                 }
             }
+            return null;
+        }
+
+        public ActionResult Init()
+        {
+            // 1 , 清空冗余数据
+
             return null;
         }
     }

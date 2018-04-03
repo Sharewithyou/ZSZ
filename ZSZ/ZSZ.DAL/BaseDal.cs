@@ -1,11 +1,9 @@
-﻿using System;
+﻿using EntityFramework.Utilities;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
-using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 using ZSZ.IDAL;
 namespace ZSZ.DAL
 {
@@ -37,6 +35,17 @@ namespace ZSZ.DAL
         {
 
             return dbContext.Set<T>().AddRange(list).ToList();
+        }
+
+        /// <summary>
+        /// 高效批量插入
+        /// </summary>
+        /// <param name="List"></param>
+        /// <returns></returns>
+        public void BatchInsert(List<T> list)
+        {
+            EFBatchOperation.For(dbContext, dbContext.Set<T>()).InsertAll(list);
+            
         }
 
         /// <summary>
@@ -118,5 +127,7 @@ namespace ZSZ.DAL
             //return dbContext.Database.ExecuteSqlCommand("truncate table " + tableName);
             return dbContext.Database.ExecuteSqlCommand(" delete from " + tableName+" where Id >-1");
         }
+
+       
     }
 }

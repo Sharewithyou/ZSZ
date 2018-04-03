@@ -24,6 +24,13 @@ namespace ZSZ.IDAL
         List<T> AddRange(List<T> list);
 
         /// <summary>
+        /// 批量插入
+        /// </summary>
+        /// <param name="List"></param>
+        /// <returns></returns>
+        void BatchInsert(List<T> List);
+
+        /// <summary>
         /// 标记删除 标记当前对象，必须把必填字段都填写，否则会报错：System.Data.Entity.Validation.DbEntityValidationException
         /// </summary>
         /// <param name="t"></param>
