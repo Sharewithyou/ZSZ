@@ -11,10 +11,11 @@
     <title>Test1</title>
 </head>
 <body>
-    @{ 
-        BtnRoleHelper.IsValid("Init", "delete");
+    @{
+        BtnRoleHelper test = new BtnRoleHelper();
+        var flag = test.IsValid("Init", "delete");
     }
-    <div> 
+    <div>
         <form method="post" action="/InitData/Test2">
             <input type="text" name="name" value="" />
             <input type="submit" />

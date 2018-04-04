@@ -9,10 +9,15 @@ namespace AdminWeb.Model
 {
     public class BtnRoleHelper
     {
+        //public static IBtnPermissionService BtnPermissionService { get; set; }
+        ////public BtnRoleHelper(IBtnPermissionService btnPermissionService)
+        ////{
+        ////   BtnPermissionService = btnPermissionService;
+        ////}
 
-        static IBtnPermissionService BtnPermissionService = DependencyResolver.Current.GetService<IBtnPermissionService>();
-      
-        public static bool IsValid(string controller, string action)
+        IBtnPermissionService BtnPermissionService = DependencyResolver.Current.GetService<IBtnPermissionService>();
+
+        public  bool IsValid(string controller, string action)
         {
             return BtnPermissionService.IsValid(36, controller, action);
         }

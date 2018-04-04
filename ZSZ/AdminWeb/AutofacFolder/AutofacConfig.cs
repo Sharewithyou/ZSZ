@@ -18,10 +18,14 @@ namespace AdminWeb.AutofacFolder
             //实例化一个autofac的创建容器
             var builder = new ContainerBuilder();
 
-            //注册控制器
+            //注册控制器 自动属性注入
             builder.RegisterControllers(typeof(MvcApplication).Assembly).PropertiesAutowired();
 
-            builder.RegisterType<BtnRoleHelper>().PropertiesAutowired();
+            //builder.RegisterFilterProvider();
+
+            //builder.RegisterType<BtnRoleHelper>().PropertiesAutowired();
+
+            //builder.RegisterType<BtnRoleHelper>().PropertiesAutowired();
 
             //builder.RegisterType<EFProductRepository>().As<IProductRepository>();
 

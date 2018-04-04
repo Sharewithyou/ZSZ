@@ -54,6 +54,7 @@
   <ItemGroup>
     <Compile Include="IAdminUserDal.cs" />
     <Compile Include="IBaseDal.cs" />
+    <Compile Include="IBtnPermissionDal.cs" />
     <Compile Include="ILoginDal.cs" />
     <Compile Include="ISysMenuDal.cs" />
     <Compile Include="ISysOperationDal.cs" />
