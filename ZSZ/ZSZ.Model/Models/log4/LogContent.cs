@@ -21,9 +21,6 @@ namespace ZSZ.Model.Models.log4
         public string ExceptoiopnMsg { get; set; }
 
 
-
-
-
         public LogContent(string msg, string ex)
         {
             this.Message = msg;
